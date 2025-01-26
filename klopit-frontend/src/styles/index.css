@@ -1,0 +1,908 @@
+/* src/styles/index.css */
+
+/* ========== Global Resets ========== */
+html, body, #root {
+  height: 100%; /* Ensure full viewport height */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif; /* Default font */
+  background-color: black; /* Black background for all pages */
+  color: #cacaca; /* Gold text */
+}
+
+* {
+  box-sizing: inherit;
+}
+
+/* Links */
+a {
+  color: #c2b252; /* Gold color */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+a:hover {
+  color: white;
+}
+
+/* ========== Typography ========== */
+h1, h2, h3 {
+  font-family: 'Arial', serif;
+  color: #c2b252;
+  margin-bottom: 16px;
+}
+
+h2 {
+  font-size: 24pt; /* Set the font size for all h2 elements */
+}
+
+h3 {
+  font-size: 16pt; /* Set the font size for all h2 elements */
+}
+
+p {
+  line-height: 1.6; /* Improve readability */
+  margin-bottom: 16px; /* Add spacing below paragraphs */
+}
+
+/* ========== Layout Helpers ========== */
+.container {
+  max-width: 1200px; /* Limit content width */
+  margin: 0 auto; /* Center horizontally */
+  padding: 16px; /* Add padding around the content */
+}
+
+.flex-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.flex-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gap-16 {
+  gap: 16px;
+}
+
+
+
+.text-block {
+  padding-bottom: 80px;
+  padding-right: 16px;
+}
+
+/* Add consistent padding for TextBlock content */
+.text-block .content {
+  margin: 0 auto; /* Center content horizontally */
+  padding: 0 20px; /* Adjust padding to match other components */
+}
+
+
+.text-block p {
+  padding-left: 1.8rem; /* Indent the entire paragraph */
+  padding-right: 1.8rem; /* Indent the entire paragraph */
+  margin-bottom: 1rem; /* Space between paragraphs */
+  line-height: 1.6; /* Improve readability */
+  color: #cacaca; /* Keep the gold color you had before */
+}
+
+.text-block ul {
+  margin-top: 1rem;
+  padding-left: 2.5rem; /* Indent the list */
+  color: #cacaca; /* Match text color */
+  list-style-type: disc; /* Use bullet points */
+  line-height: 1.8; /* Improve readability */
+}
+
+
+/* Header styles */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0); /* Start transparent */
+}
+
+
+.header-scrolled {
+  background-color: black; /* Black background on scroll */
+}
+
+.header .container {
+  display: flex;
+  justify-content: space-between; /* Align logo and navigation links */
+  align-items: center;
+}
+
+.header .logo {
+  font-size: 1.5rem;
+  font-family: "Arial", serif;
+  color: #c2b252;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: flex-end;
+  gap: 16px;
+}
+
+.nav-link {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #c2b252; /* Gold color */
+  position: relative;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: white;
+}
+
+.nav-link[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #c2b252; /* Gold underline for active page */
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-links span {
+  cursor: pointer;
+  color: #c2b252; /* Gold color */
+  text-decoration: none; /* Remove underline */
+  transition: color 0.3s ease;
+}
+
+.nav-links span:hover {
+  color: white; /* Highlight on hover */
+}
+
+
+/* Logo styles */
+.logo-img {
+  height: 40px; /* Adjust the height of the logo */
+  width: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
+/* ========== Buttons ========== */
+button {
+  font-family: inherit; /* Match font with the rest of the app */
+  cursor: pointer;
+  padding: 0.6em 1.2em; /* Spacing inside the button */
+  font-size: 1rem;
+  background-color: #1a1a1a; /* Dark background */
+  color: #c2b252; /* Gold text */
+  border: 1px solid transparent;
+  transition: all 0.3s ease; /* Smooth hover effects */
+}
+
+button:hover {
+  background-color: #c2b252; /* Gold background on hover */
+  color: black;
+}
+
+/* ========== Lists ========== */
+ul {
+  list-style-type: disc; /* Default bullet points */
+  color: #c2b252;
+  margin-left: 20px; /* Indent */
+  line-height: 1.8; /* Improve readability */
+  margin-bottom: 16px; /* Add spacing below lists */
+}
+
+/* ========== Animations ========== */
+.page-content {
+  min-height: 100vh;
+  opacity: 0;
+  transform: translateY(10px);
+  animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes titleFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(10px); /* Start slightly above */
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0); /* End at the original position */
+  }
+}
+
+
+/* ========== Logo ========== */
+.logo-img {
+  height: 40px; /* Adjust the height of the logo */
+  width: auto; /* Maintain aspect ratio */
+  display: block;
+}
+
+.logo {
+  text-decoration: none; /* Remove underline for the link */
+  display: flex;
+  align-items: center; /* Vertically align the logo with the navigation */
+}
+
+
+/* ========== BackgroundImage styles ========== */
+
+/* Base styles for the background image */
+.background-image {
+  position: relative;
+  width: 100%;
+  display: flex;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* Full-height background image for the front page */
+.background-image.front-page {
+  height: 100vh; /* Full viewport height */
+  align-items: center;
+  justify-content: center;
+}
+
+/* Reduced-height background image for default pages */
+.background-image.default-page {
+  height: 35vh; /* 35% of the viewport height */
+  align-items: flex-end; /* Align content at the bottom */
+  justify-content: flex-start; /* Align content to the left */
+  padding-left: 16px; /* Add some left padding for spacing */
+  padding-bottom: 16px; /* Add bottom padding for spacing */
+}
+
+/* Reduced-height background for pages without an image */
+.background-image.no-background {
+  height: 40px; /* Fixed height for no background image */
+  align-items: center; /* Center content vertically */
+  justify-content: center; /* Center content horizontally */
+  background: none; /* Remove background styling */
+  padding: 0; /* Reset padding */
+}
+
+/* Overlay styles (shared across all pages) */
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.3); /* Dark overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Overlay styles for default pages */
+.background-image.default-page .background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Darker overlay */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Title styles (centered for front page, left-aligned for default pages) */
+.background-title {
+  font-family: 'Arial Black', sans-serif;
+  font-size: 4rem;
+  color: #c2b252; /* Gold color */
+  margin: 0;
+  text-align: center; /* Default to center alignment */
+  animation: titleFadeIn 0.5s ease-out forwards; /* Animation properties */
+}
+
+/* Scoped left-alignment for default pages only */
+.background-image.default-page .background-title {
+  position: absolute; /* Enable absolute positioning for the title */
+  bottom: 16px; /* Adjust spacing from the bottom of the image */
+  left: 35px; /* Align with the left-padding of the content */
+  text-align: left; /* Align text to the left */
+  font-size: 2.5rem; /* Adjust font size for default pages */
+  color: #c2b252; /* Gold color */
+  margin: 0; /* Remove default margin */
+  padding: 0; /* Ensure no extra padding */
+}
+
+/* Title styles for no-background case */
+.background-image.no-background .background-title {
+  font-size: 2rem; /* Smaller font size */
+  color: #c2b252; /* Gold color */
+  margin: 0 auto; /* Center the title */
+  text-align: center; /* Center-align title */
+}
+
+/* Content under the title (shared across all pages) */
+.background-content {
+  margin-top: 16px;
+  color: white;
+  text-align: center;
+}
+
+/* Text Container (for optional descriptions) */
+.text-container {
+  max-width: 1000px; /* Restrict the width */
+  margin: 0 auto; /* Center horizontally */
+  text-align: center; /* Center-align the text */
+  padding: 0 16px; /* Add padding for mobile devices */
+}
+
+/* Description text */
+.background-description {
+  color: white; /* Ensure readability */
+  font-size: 1.2rem; /* Adjust font size */
+  line-height: 1.8; /* Improve readability */
+  margin-top: 16px; /* Add spacing below the title */
+}
+
+
+
+/* Grid Layout for Upcoming Events */
+.upcoming-events {
+  margin-top: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch; /* Allow title to align with container */
+  gap: 24px;
+  padding: 20px;
+}
+
+.upcoming-events-title {
+  text-align: left; /* Align the title to the left */
+  font-weight: bold;
+  color: #c2b252; /* Gold color */
+  margin-bottom: 16px; /* Add spacing below the title */
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+  width: 100%;
+}
+
+/* Event Card */
+.card {
+  /*border: 1px solid #c2b252;*/
+  padding: 16px;
+  /*border-radius: 8px;*/
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: rgb(12,12,12);
+  background: linear-gradient(45deg, rgba(12,12,12,1) 0%, rgba(31, 31, 31, 0.755) 100%);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.card-header {
+  margin-bottom: 16px;
+}
+
+.event-date {
+  font-size: 0.9rem;
+  color: #a2a2a2;
+  margin-bottom: 8px;
+}
+
+.event-title {
+  font-size: 1.2rem;
+  color: #cacaca;
+  margin: 0;
+}
+
+.card-body {
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+
+.event-description {
+  font-size: 0.9rem;
+  color: #cacaca;
+  line-height: 1.5;
+}
+
+.card-button {
+  display: inline-block;
+  width: 35%;
+  padding: 10px 16px;
+  /*border: 1px solid #c2b252;*/
+  /*border-radius: 8px;*/
+  background: #202020;
+  color: #cacaca;
+  /*text-transform: uppercase;*/
+  text-align: center;
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.card-button:hover {
+  background-color: #c2b252;
+  color: black;
+}
+
+/* View All Button */
+.view-all {
+  margin-top: 20px;
+  display: flex; /* Enable flexbox */
+  justify-content: left; /* Center align horizontally */
+}
+
+.view-all-button {
+  padding: 12px 18px;
+  /*border-radius: 8px;*/
+  border: none;
+  background-color: #c2b252;
+  color: #000000;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.view-all-button:hover {
+  background-color: white;
+  color: #c2b252;
+}
+
+
+/* Membership Benefits Section */
+.membership-benefits {
+  margin-top: 0px; /* Add spacing above */
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 100px;
+}
+
+.membership-content {
+  display: flex;
+  align-items: center; /* Vertically center content */
+  justify-content: space-between; /* Space between text and image */
+  height: auto; /* Make the container take full height */
+  gap: 16px; /* Maintain gap between elements */
+}
+
+.membership-text {
+  display: flex;
+  margin-right: 80px;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center; /* Vertically center the text within its container */
+  flex: 1;
+}
+
+.membership-image {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120%;
+}
+
+.membership-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.join-button {
+  display: inline-block;
+  padding: 12px 18px;
+  /*border-radius: 8px;*/
+  font-size: 1rem;
+  background-color: #c2b252;
+  color: black;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-top: 16px;
+}
+
+.join-button:hover {
+  background-color: white;
+  color: #c2b252;
+}
+
+/* Spacing for Upcoming Events */
+.upcoming-events {
+  margin-bottom: 90px;
+}
+
+/* Donations Section */
+.donations {
+  margin-top: 48px; /* Add spacing above */
+  padding-top: 30px; /* Add padding inside the section */
+  padding-bottom: 80px; /* Add padding inside the section */
+  padding-left: 15px; /* Horizontal padding */
+  padding-right: 15px; /* Horizontal padding */
+  background: linear-gradient(45deg, rgb(10, 10, 10) 0%, rgba(36, 36, 36, 0.755) 100%); /* Original gradient background */
+  color: #cacaca; /* Text color */
+  text-align: center; /* Center-align the text */
+  position: relative;
+  width: 100vw; /* Span the entire viewport width */
+  left: 50%; /* Shift from the center */
+  transform: translateX(-50%); /* Align the section to the center of the viewport */
+  box-sizing: border-box; /* Include padding in the width calculation */
+}
+
+/* Center Content */
+.donations-content {
+  max-width: 600px; /* Restrict the width for readability */
+  margin: 0 auto; /* Center horizontally */
+  text-align: center; /* Center text within the container */
+}
+
+/* Center Card */
+.donation-card {
+  background: rgba(31, 31, 31, 0.9); /* Dark background for the card */
+  padding: 32px; /* Add space inside the card */
+  max-width: 400px; /* Limit the width of the card */
+  margin: 0 auto; /* Center horizontally */
+  text-align: left; /* Align text within the card */
+  color: #cacaca; /* Text color */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Slight shadow for emphasis */
+}
+
+/* List Styling */
+.donation-card ul {
+  list-style: none; /* Remove bullet points */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove default margin */
+}
+
+.donation-card ul li {
+  margin-bottom: 16px; /* Add spacing between list items */
+  line-height: 1.8; /* Improve readability */
+  color: #cacaca; /* Text color */
+}
+
+.donation-card ul li strong {
+  color: #c2b252; /* Highlight subtitles in gold */
+}
+
+.donation-card ul li:last-child {
+  margin-bottom: 0; /* Remove spacing after the last item */
+}
+
+
+/* Instagram feed styles */
+
+.instagram-feed {
+  margin-top: 0px; /* Spacing above the section */
+  padding-top: 30px; /* Vertical padding inside the section */
+  padding-bottom: 50px; /* Vertical padding inside the section */
+  background-color: black; /* Keep the black background */
+  color: #cacaca; /* Light text color for visibility */
+}
+
+.instafeed-content {
+  display: flex;
+  flex-direction: column; /* Stack content vertically */
+  gap: 16px; /* Add space between elements */
+  padding: 16px; /* Add padding for consistent alignment */
+}
+
+.instagram-feed h2 {
+  font-size: 24pt; /* Ensure consistent title font size */
+  color: #c2b252; /* Gold color for the title */
+  margin-bottom: 24px; /* Add spacing below the title */
+  text-align: left; /* Align the title to the left */
+}
+
+
+/* Footer styles */
+.footer {
+  
+  background-color: black;
+  color: #c2b252; /* Gold text color */
+  padding: 40px 16px;
+  text-align: center; /* Center-align the content */
+  border-top: 1px solid #c2b252; /* Optional border for separation */
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto; /* Center the content horizontally */
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center-align all elements */
+}
+
+.footer-logo {
+  width: 60px; /* Adjust logo size */
+  height: auto;
+  margin-bottom: 5px;
+}
+
+.footer-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.footer-contact {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin: 0;
+  color: #c2b252;
+}
+
+.footer-contact a {
+  color: #c2b252;
+  text-decoration: none;
+}
+
+.footer-contact a:hover {
+  color: white; /* Change color on hover */
+}
+
+
+.login {
+  margin-top: 48px;
+  padding-top: 80px;
+  padding-left: 15px;
+  padding-right: 15px;
+  background: #000000;
+  color: #cacaca;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+
+/* Login Card */
+.login-card {
+  background: linear-gradient(45deg, rgb(20, 20, 20) 0%, rgba(31, 31, 31, 0.755) 100%);; /* Dark background for the card */
+  padding: 32px; /* Add space inside the card */
+  max-width: 400px; /* Limit the width of the card */
+  margin: 0 auto; /* Center horizontally */
+  text-align: left; /* Align text within the card */
+  color: #cacaca; /* Text color */
+}
+
+/* Form Styling */
+.login-card form {
+  display: flex;
+  flex-direction: column; /* Stack form inputs vertically */
+  gap: 16px; /* Add spacing between form elements */
+}
+
+.login-card input {
+  padding: 12px; /* Add padding inside inputs */
+  border: 1px solid #555; /* Subtle border */
+  background: #1a1a1a; /* Dark input background */
+  color: #cacaca; /* Input text color */
+  font-size: 1rem; /* Font size for inputs */
+}
+
+.login-card input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #c2b252; /* Highlight input with gold color on focus */
+}
+
+.login-card button {
+  padding: 12px; /* Add padding inside the button */
+  background: #c2b252; /* Gold background for the button */
+  color: black; /* Black text for contrast */
+  border: none; /* Remove button border */
+  font-size: 1rem; /* Font size for the button */
+  cursor: pointer; /* Change cursor to pointer */
+  transition: background-color 0.3s ease; /* Smooth hover effect */
+}
+
+.login-card button:hover {
+  background: white; /* Change background to white on hover */
+  color: #c2b252; /* Gold text for contrast */
+}
+
+
+/* Event Page Specific Styles */
+.event-page {
+  margin: 20px auto; /* Centers the container horizontally and adds vertical spacing */
+  padding: 20px;
+  padding-bottom: 60px;
+  max-width: 70vw; /* Restricts the content width to 80% of the viewport */
+  min-height: 100vh; /* Ensures a minimum height for balanced layout */
+  background-color: black; /* Match the global background */
+  color: #cacaca; /* Gold text color for consistency */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Adds subtle elevation for better aesthetics */
+  border-radius: 8px; /* Adds rounded corners for a modern look */
+}
+
+/* General Content */
+.event-page h1,
+.event-page .event-description,
+.event-page .event-meta,
+.event-page .registrations h3 {
+  text-align: left; /* Ensures text is left-aligned */
+  margin: 0 auto; /* Centers content within the container */
+  max-width: 100%; /* Matches the width of the "box" */
+}
+
+/* Title */
+.event-page h1 {
+  margin-bottom: 16px;
+}
+
+/* Description */
+.event-page .event-description {
+  font-size: 1rem;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  color: #cacaca;
+  white-space: pre-line; /* Preserve line breaks */
+}
+
+/* Metadata */
+.event-page .event-meta {
+  margin-bottom: 20px;
+  font-weight: bold;
+  color: #cacaca; /* Slightly muted text for details */
+}
+
+/* Registrations Section */
+.event-page .registrations {
+  margin-top: 30px;
+}
+
+.event-page .registrations h3 {
+  color: #c2b252;
+  margin-bottom: 16px;
+}
+
+/* Registration Table */
+.event-page .registration-table {
+  margin: 0 auto; /* Centers the table horizontally */
+  margin-bottom: 30px;
+  width: 100%; /* Ensures the table fills the full width of the container */
+  border-collapse: collapse;
+  background-color: #1a1a1a;
+  color: #cacaca;
+}
+
+.event-page .registration-table th,
+.event-page .registration-table td {
+  padding: 12px 16px;
+  text-align: left; /* Ensures text in the table cells is left-aligned */
+}
+
+.event-page .registration-table th {
+  background-color: #2a2a2a;
+  color: #c2b252; /* Gold headers */
+}
+
+.event-page .registration-table tr:nth-child(even) {
+  background-color: #202020; /* Alternating row color */
+}
+
+/* Registration Button */
+.event-page .register-button {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 1rem;
+  background-color: #c2b252; /* Gold */
+  color: black;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.event-page .register-button:hover {
+  background-color: white;
+  color: #c2b252; /* Reverse color on hover */
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 28px;
+  font-size: 1rem;
+  color: #cacaca; /* Gold color for the link */
+  transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+.back-link:hover {
+  color: #c2b252; /* Change to white on hover */
+}
+
+/* Input Fields */
+.event-page .modal-content input {
+  padding: 12px;
+  border: 1px solid #555;
+  background: #1a1a1a;
+  color: #cacaca;
+  font-size: 1rem;
+}
+
+.event-page .modal-content input:focus {
+  outline: none;
+  border-color: #c2b252; /* Highlight with gold color */
+}
+
+/* Buttons */
+.event-page .modal-content button {
+  padding: 12px 24px;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-right: 20px;
+}
+
+.event-page .modal-content button:first-child {
+  background: #c2b252;
+  color: black;
+}
+
+.event-page .modal-content button:first-child:hover {
+  background: white;
+  color: #c2b252;
+}
+
+.event-page .modal-content button:last-child {
+  background: #1a1a1a;
+  color: #cacaca;
+}
+
+.event-page .modal-content button:last-child:hover {
+  background: #2a2a2a;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  gap: 1rem; /* Add spacing between the input fields */
+  margin-bottom: 20px;
+  min-width: 200px;
+}
+
+.input-group input {
+  padding: 16px; /* Match the styling for the login form */
+  border: 1px solid #555; /* Subtle border */
+  background: #1a1a1a; /* Dark input background */
+  color: #cacaca; /* Input text color */
+  font-size: 1rem; /* Font size for inputs */
+  width: 35%; /* Ensure inputs span the full container width */
+}
+
+.input-group input:focus {
+  outline: none; /* Remove default focus outline */
+  border-color: #c2b252; /* Highlight input with gold color on focus */
+}
+
+
+
+
