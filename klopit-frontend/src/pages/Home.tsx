@@ -18,15 +18,10 @@ interface EventType {
 const Home: React.FC = () => {
   const [events, setEvents] = useState<EventType[]>([]);
 
-  // Fetch a small list of events (e.g. 3) from backend
   useEffect(() => {
     fetch(`${config.API_BASE_URL}/events`)
       .then((res) => res.json())
-      .then((data) => {
-        // data should be an array of events
-        // If you only want 3, slice here (or rely on maxEvents prop)
-        setEvents(data);
-      })
+      .then((data) => setEvents(data))
       .catch((error) => console.error("Error fetching events for Home:", error));
   }, []);
 
@@ -39,15 +34,23 @@ const Home: React.FC = () => {
         variant="frontPage"
       />
       <div className="container page-content">
-        {/* Show the 3 most recent events */}
-        <UpcomingEventsSection 
-          events={events}
-          maxEvents={3}
-          title="Tulevat tapahtumat"
-        />
-        <MembershipBenefits />
-        <Donations />
-        <InstaFeed />
+        <div className="component-wrapper">
+          <UpcomingEventsSection
+            events={events}
+            isHomePage={true}
+            maxEvents={3}
+            title="Tulevat tapahtumat"
+          />
+        </div>
+        <div className="component-wrapper spacing-medium">
+          <MembershipBenefits />
+        </div>
+        <div className="component-wrapper spacing-small">
+          <Donations />
+        </div>
+        <div className="component-wrapper">
+          <InstaFeed />
+        </div>
       </div>
     </>
   );

@@ -1,20 +1,19 @@
-// UpcomingEventsSection.tsx
 import React from "react";
 import { Link } from "react-router-dom";
 
 interface EventData {
-  _id: string; // match your MongoDB field
+  _id: string;
   title: string;
   date: string;
   description: string;
-  // you can add more fields if needed (maxParticipants, etc.)
 }
 
 interface UpcomingEventsSectionProps {
   events: EventData[];
-  maxEvents?: number;
+  maxEvents?: number; // 3 for home page, undefined for all events
   title?: string;
   showViewAll?: boolean;
+  isHomePage?: boolean; // Prop to distinguish home page
 }
 
 const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
@@ -22,31 +21,44 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
   maxEvents,
   title = "Tulevat tapahtumat",
   showViewAll = true,
+  isHomePage = false, // Default to false (events page context)
 }) => {
-  // Filter only future events
   const filteredEvents = events
     .filter((event) => new Date(event.date) > new Date())
     .sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
 
   const displayedEvents = maxEvents ? filteredEvents.slice(0, maxEvents) : filteredEvents;
 
+  // Format date to Finnish format: dd.mm.yyyy
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("fi-FI", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric",
+    });
+  };
+
   return (
     <div className="upcoming-events">
-      <h2 className="upcoming-events-title">{title}</h2>
-      <div className="events-grid">
-        {displayedEvents.map((event) => (
-          <div key={event._id} className="card">
-            <div className="card-header">
-              <p className="event-date">
-                {new Date(event.date).toLocaleDateString("fi-FI")}
+      <h2 className={`upcoming-events-title ${isHomePage ? "home-events-title" : ""}`}>{title}</h2>
+      <div className={isHomePage ? "home-events" : "events-grid"}>
+        {displayedEvents.map((event, index) => (
+          <div key={event._id} className="event-card">
+            <div className="event-card-content">
+              <h3 className="event-card-title">{event.title}</h3>
+              <p className="event-card-date">{formatDate(event.date)}</p>
+              <p className="event-card-description">
+                {event.description.length > 100
+                  ? `${event.description.substring(0, 100)}...`
+                  : event.description}
               </p>
-              <h3 className="event-title">{event.title}</h3>
+              <div className={`event-card-accent accent-${index + 1}`}></div>
             </div>
-            <div className="card-body">
-              <p className="event-description">{event.description}</p>
-            </div>
-            {/* Link to /events/:_id instead of /events/:id */}
-            <Link to={`/events/${event._id}`} className="card-button">
+            <Link
+              to={`/events/${event._id}?from=${isHomePage ? "home" : "events"}`}
+              className="btn btn-primary"
+            >
               Lue lisää
             </Link>
           </div>
@@ -54,7 +66,7 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
       </div>
       {showViewAll && (
         <div className="view-all">
-          <Link to="/events" className="view-all-button">
+          <Link to="/events" className="btn btn-primary">
             Kaikki tapahtumat
           </Link>
         </div>

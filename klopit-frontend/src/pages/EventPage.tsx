@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useLocation } from "react-router-dom"; // Added useLocation
 import config from "../config";
 import BackgroundImage from "../components/BackgroundImage";
 
@@ -10,12 +10,9 @@ interface Registration {
 
 const EventPage: React.FC = () => {
   const { id } = useParams();
+  const location = useLocation(); // Added to get query parameters
   const [event, setEvent] = useState<any>(null);
-
-  // Modal state
   const [showRegisterModal, setShowRegisterModal] = useState(false);
-
-  // Registration form fields
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
 
@@ -26,7 +23,6 @@ const EventPage: React.FC = () => {
       .catch((err) => console.error("Error fetching event:", err));
   }, [id]);
 
-  // Handle registration
   const handleRegister = async () => {
     try {
       const res = await fetch(`${config.API_BASE_URL}/events/${id}/register`, {
@@ -37,13 +33,10 @@ const EventPage: React.FC = () => {
       const data = await res.json();
       if (res.ok) {
         alert("Registration successful!");
-        // Update local event registrations
         setEvent((prev: any) => ({
           ...prev,
           registrations: data.registrations,
         }));
-
-        // Clear fields and close modal
         setName("");
         setEmail("");
         setShowRegisterModal(false);
@@ -55,6 +48,11 @@ const EventPage: React.FC = () => {
     }
   };
 
+  // Determine the "Takaisin" destination based on the 'from' query parameter
+  const queryParams = new URLSearchParams(location.search);
+  const from = queryParams.get("from");
+  const backLink = from === "home" ? "/" : "/events"; // Default to "/events" if no "from" parameter
+
   if (!event)
     return (
       <div className="container page-content">
@@ -65,21 +63,19 @@ const EventPage: React.FC = () => {
   return (
     <>
       <BackgroundImage image="" title="" description="" variant="default" />
-
       <div className="container page-content event-page">
-        <Link to="/events" className="back-link">
-          &laquo; Takaisin
-        </Link>
-
+        <div className="back-button-container">
+          <Link to={backLink} className="btn btn-secondary">
+            Takaisin
+          </Link>
+        </div>
         <h1>{event.title}</h1>
         <h3 className="event-meta">
           {event.date
-            ? new Date(event.date).toLocaleDateString("fi-FI")
+            ? new Date(event.date).toLocaleDateString("fi-FI") // Fixed "fi-FIpq" typo
             : "Ei päivämäärää"}
         </h3>
         <p className="event-description">{event.description}</p>
-
-        {/* Conditional rendering for registration info and button */}
         {event.maxParticipants && (
           <div className="registrations">
             <h3>
@@ -106,11 +102,9 @@ const EventPage: React.FC = () => {
             ) : (
               <p>Ei ilmoittautuneita vielä.</p>
             )}
-
-            {/* Hide button when modal is shown */}
             {!showRegisterModal && (
               <button
-                className="register-button"
+                className="btn btn-primary"
                 onClick={() => setShowRegisterModal(true)}
               >
                 Ilmoittaudu
@@ -118,7 +112,6 @@ const EventPage: React.FC = () => {
             )}
           </div>
         )}
-
         {showRegisterModal && (
           <div
             className="modal-overlay"
@@ -131,22 +124,29 @@ const EventPage: React.FC = () => {
               <h3>Ilmoittaudu tapahtumaan: {event.title}</h3>
               <div className="input-group">
                 <input
-                    type="text"
-                    placeholder="Nimi"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                  type="text"
+                  placeholder="Nimi"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                 />
                 <input
-                    type="email"
-                    placeholder="Sähköposti"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                  type="email"
+                  placeholder="Sähköposti"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                 />
-                </div>
+              </div>
               <div className="button-group">
-                <button onClick={handleRegister}>Lähetä</button>
-                <button onClick={() => setShowRegisterModal(false)}>Peruuta</button>
-                </div>
+                <button className="btn btn-primary" onClick={handleRegister}>
+                  Lähetä
+                </button>
+                <button
+                  className="btn btn-secondary"
+                  onClick={() => setShowRegisterModal(false)}
+                >
+                  Peruuta
+                </button>
+              </div>
             </div>
           </div>
         )}

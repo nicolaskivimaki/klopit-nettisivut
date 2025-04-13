@@ -1,3 +1,4 @@
+// src/components/Donations.tsx
 import React from "react";
 
 const Donations: React.FC = () => {

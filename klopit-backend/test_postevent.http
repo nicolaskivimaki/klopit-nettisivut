@@ -1,9 +1,0 @@
-POST http://localhost:5001/api/events
-Content-Type: application/json
-Authorization: Bearer 
-
-{
-    "title": "Away Game Trip",
-    "date": "2025-05-10",
-    "description": "Join us for an away game trip to support our team on the road!"
-}
