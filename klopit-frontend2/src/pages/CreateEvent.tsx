@@ -14,7 +14,6 @@ const CreateEvent: React.FC = () => {
   const [date, setDate] = useState<Date | null>(null);
   const [dateInput, setDateInput] = useState("");
   const [description, setDescription] = useState("");
-  const [limitEnabled, setLimitEnabled] = useState(false);
   const [maxParticipants, setMaxParticipants] = useState<number | undefined>();
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());

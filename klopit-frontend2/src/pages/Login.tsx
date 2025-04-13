@@ -28,7 +28,7 @@ const Login: React.FC = () => {
 
   return (
     <>
-      <BackgroundImage image="" description="" variant="default-page" />
+      <BackgroundImage image="" description="" variant="default" />
       <div className="container page-content">
         <div className="component-wrapper">
           <div className="login-card">
