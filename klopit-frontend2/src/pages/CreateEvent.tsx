@@ -1,10 +1,18 @@
-// src/pages/CreateEvent.tsx
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import config from "../config";
 import BackgroundImage from "../components/BackgroundImage";
-import { format, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isSameMonth, addMonths, subMonths } from "date-fns";
+import {
+  format,
+  startOfMonth,
+  endOfMonth,
+  eachDayOfInterval,
+  isSameDay,
+  isSameMonth,
+  addMonths,
+  subMonths,
+} from "date-fns";
 
 const CreateEvent: React.FC = () => {
   const { user } = useAuth();
@@ -15,6 +23,7 @@ const CreateEvent: React.FC = () => {
   const [dateInput, setDateInput] = useState("");
   const [description, setDescription] = useState("");
   const [maxParticipants, setMaxParticipants] = useState<number | undefined>();
+  const [limitEnabled, setLimitEnabled] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [dateError, setDateError] = useState<string | null>(null);
@@ -188,21 +197,13 @@ const CreateEvent: React.FC = () => {
                 {showCalendar && (
                   <div className="calendar-picker" ref={calendarRef}>
                     <div className="calendar-header">
-                      <button
-                        type="button"
-                        className="calendar-nav-btn"
-                        onClick={handlePrevMonth}
-                      >
+                      <button type="button" className="calendar-nav-btn" onClick={handlePrevMonth}>
                         &lt;
                       </button>
                       <h3 className="calendar-title">
                         {format(currentMonth, "MMMM yyyy")}
                       </h3>
-                      <button
-                        type="button"
-                        className="calendar-nav-btn"
-                        onClick={handleNextMonth}
-                      >
+                      <button type="button" className="calendar-nav-btn" onClick={handleNextMonth}>
                         &gt;
                       </button>
                     </div>
@@ -218,14 +219,10 @@ const CreateEvent: React.FC = () => {
                         return (
                           <div
                             key={index}
-                            className={`calendar-day ${
-                              !isCurrentMonth ? "empty-day" : ""
-                            } ${isSelected ? "selected-day" : ""}`}
+                            className={`calendar-day ${!isCurrentMonth ? "empty-day" : ""} ${isSelected ? "selected-day" : ""}`}
                             onClick={() => isCurrentMonth && handleDateSelect(day)}
                           >
-                            {isCurrentMonth && (
-                              <span className="day-number">{format(day, "d")}</span>
-                            )}
+                            {isCurrentMonth && <span className="day-number">{format(day, "d")}</span>}
                           </div>
                         );
                       })}
@@ -243,6 +240,17 @@ const CreateEvent: React.FC = () => {
                   placeholder="Kerro tapahtumasta..."
                   required
                 />
+              </div>
+
+              <div className="form-group">
+                <label>
+                  <input
+                    type="checkbox"
+                    checked={limitEnabled}
+                    onChange={() => setLimitEnabled(!limitEnabled)}
+                  />
+                  &nbsp;Rajoita osallistujamäärä
+                </label>
               </div>
 
               {limitEnabled && (
