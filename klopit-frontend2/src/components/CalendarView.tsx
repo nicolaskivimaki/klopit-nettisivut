@@ -44,8 +44,6 @@ const CalendarView: React.FC<CalendarViewProps> = ({ events }) => {
     
     // Add days of the month with their events
     for (let day = 1; day <= days; day++) {
-      const date = new Date(currentYear, currentMonth, day);
-      const dateString = date.toISOString().split('T')[0]; // YYYY-MM-DD
       
       // Find events for this day
       const dayEvents = events.filter(event => {
