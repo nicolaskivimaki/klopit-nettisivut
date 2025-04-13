@@ -11,26 +11,26 @@ const PORT = process.env.PORT || 5001;
 app.use(express.json());
 app.use(cookieParser());
 
-// Dynamic CORS based on allowed origins
-const allowedOrigins = (process.env.CORS_ORIGIN || "")
+// === Dynamic CORS ===
+const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173")
   .split(",")
   .map((origin) => origin.trim());
 
 app.use(
   cors({
     origin: function (origin, callback) {
-      // Allow requests with no origin (e.g. curl, mobile apps)
       if (!origin || allowedOrigins.includes(origin)) {
         callback(null, true);
       } else {
+        console.warn(`⛔ Blocked CORS request from origin: ${origin}`);
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true,
+    credentials: true, // important if using cookies or auth
   })
 );
 
-// Logging middleware
+// === Logging Middleware ===
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.path}`);
   next();
@@ -51,21 +51,20 @@ const eventsRouter = require("./routes/events");
 const chantsRouter = require("./routes/chants");
 
 app.get("/", (req, res) => {
-  res.send("Server is running!");
+  res.send("🚀 Server is running!");
 });
 
 app.use("/api/auth", authRouter);
 app.use("/api/events", eventsRouter);
 app.use("/api/chants", chantsRouter);
 
-// Catch-all route for unknown endpoints
-app.use((req, res, next) => {
+// === Error Handling ===
+app.use((req, res) => {
   res.status(404).json({ message: "Route not found" });
 });
 
-// Global error handler
 app.use((err, req, res, next) => {
-  console.error("Server error:", err.stack);
+  console.error("❗ Server error:", err.stack);
   res.status(500).json({ message: "Something went wrong!" });
 });
 
