@@ -13,7 +13,7 @@ interface UpcomingEventsSectionProps {
   maxEvents?: number; // 3 for home page, undefined for all events
   title?: string;
   showViewAll?: boolean;
-  isHomePage?: boolean; // Prop to distinguish home page
+  isHomePage?: boolean; // Prop to distinguish home page usage
 }
 
 const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
@@ -21,7 +21,7 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
   maxEvents,
   title = "Tulevat tapahtumat",
   showViewAll = true,
-  isHomePage = false, // Default to false (events page context)
+  isHomePage = false,
 }) => {
   const filteredEvents = events
     .filter((event) => new Date(event.date) > new Date())
@@ -44,12 +44,37 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
       <h2 className={`upcoming-events-title ${isHomePage ? "home-events-title" : ""}`}>
         {title}
       </h2>
-      {/* New wrapper for horizontal scrolling */}
-      <div className="scroll-container">
-        <div className={isHomePage ? "home-events" : "events-grid"}>
+      {isHomePage ? (
+        // Only on the home page, wrap events in a scrollable container
+        <div className="scroll-container">
+          <div className="home-events">
+            {displayedEvents.map((event, index) => (
+              <div key={event._id} className="event-card">
+                <div className="event-card-content">
+                  <h3 className="event-card-title">{event.title}</h3>
+                  <p className="event-card-date">{formatDate(event.date)}</p>
+                  <p className="event-card-description">
+                    {event.description.length > 100
+                      ? `${event.description.substring(0, 100)}...`
+                      : event.description}
+                  </p>
+                  <div className={`event-card-accent accent-${index + 1}`}></div>
+                </div>
+                <Link
+                  to={`/events/${event._id}?from=home`}
+                  className="btn btn-primary"
+                >
+                  Lue lisää
+                </Link>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : (
+        // When not on the home page, render a grid layout without horizontal scrolling
+        <div className="events-grid">
           {displayedEvents.map((event, index) => (
             <div key={event._id} className="event-card">
-              {/* Event card content */}
               <div className="event-card-content">
                 <h3 className="event-card-title">{event.title}</h3>
                 <p className="event-card-date">{formatDate(event.date)}</p>
@@ -61,7 +86,7 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
                 <div className={`event-card-accent accent-${index + 1}`}></div>
               </div>
               <Link
-                to={`/events/${event._id}?from=${isHomePage ? "home" : "events"}`}
+                to={`/events/${event._id}?from=events`}
                 className="btn btn-primary"
               >
                 Lue lisää
@@ -69,7 +94,7 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
             </div>
           ))}
         </div>
-      </div>
+      )}
       {showViewAll && (
         <div className="view-all">
           <Link to="/events" className="btn btn-primary">
@@ -77,7 +102,7 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
           </Link>
         </div>
       )}
-    </div>  
+    </div>
   );
 };
 

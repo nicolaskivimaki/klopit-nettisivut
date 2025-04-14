@@ -1,4 +1,3 @@
-// src/pages/Home.tsx
 import React, { useEffect, useState } from "react";
 import BackgroundImage from "../components/BackgroundImage";
 import UpcomingEventsSection from "../components/UpcomingEventsSection";
