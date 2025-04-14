@@ -249,6 +249,13 @@ p {
   padding-right: 0;
 }
 
+@media (max-width: 768px) {
+  .background-image {
+    background-attachment: scroll !important;
+  }
+}
+
+
 /* ========== Lists ========== */
 ul {
   list-style-type: disc;
