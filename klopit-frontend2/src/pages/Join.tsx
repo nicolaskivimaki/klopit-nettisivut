@@ -1,7 +1,7 @@
 // src/pages/Join.tsx
 import React from "react";
 import BackgroundImage from "../components/BackgroundImage";
-import joinBg from "../assets/jäsenyys_kuva2.jpeg";
+import joinBg from "../assets/jasenyys_kuva2.jpg";
 import TextBlock from "../components/TextBlock";
 
 const benefits = [
@@ -14,44 +14,55 @@ const benefits = [
   "Läsnäolo- ja äänestysoikeus yhdistyksen vuosikokouksessa.",
 ];
 
-// Rename to PascalCase and define as a proper component
 const Instructions: React.FC = () => {
   return (
-    <div className="donations">
+    <div className="instructions">
       <div className="donations-content">
         <h2>Liittymisohje Meidän Kerho ry:n jäseneksi</h2>
+        <p>
+        Jäseneksi voit liittyä lähettämällä tarvittavat tiedot sähköpostitse ja maksamalla jäsenmaksun. Toimi näin:
+        </p>
         <div className="donation-card">
-          <ul>
+          <div className="step">
+            <h3 className="step-title">1. Lähetä sähköpostiviesti</h3>
+            <ul>
             <li>
-              <strong>Jäseneksi voit liittyä laittamalla viestiä:</strong>{" "}
-              posti@meidankerho.fi
-            </li>
-            <li>
-              <strong>Aiheeksi:</strong> "jäsentiedot"
-            </li>
-            <li>
-              <strong>Viestiin tulee sisällyttää:</strong>
-              <ul>
-                <li>- Etu- ja sukunimi</li>
-                <li>- Sähköpostiosoite</li>
-                <li>- Puhelinnumero</li>
-              </ul>
-            </li>
-            <li>
-              <strong>Maksa jäsenmaksu 25€ (vuosittainen 15€ +
-              liittymismaksu 10€) tilille:</strong>
-            </li>
-            <li>
-              FI29 4108 0013 1821 60
-            </li>
-            <li>
-              <strong>Maksunsaajaksi:</strong> Meidän Kerho ry
-            </li>
-            <li>
-            <strong>Ei viitettä. Kirjoita viestikenttään:{" "}</strong>
-              "Liittyminen24 etu- ja sukunimi"
-            </li>
-          </ul>
+                <strong>Osoite:</strong> posti@meidankerho.fi
+              </li>
+              <li>
+                <strong>Aihe:</strong> "jäsentiedot"
+              </li>
+              <li>
+                <strong>Henkilötiedot:</strong>
+                <ul>
+                  <li>Etu- ja sukunimi</li>
+                  <li>Sähköpostiosoite</li>
+                  <li>Puhelinnumero</li>
+                </ul>
+              </li>
+               <p></p>
+              <li>
+              </li>
+            </ul>
+          </div>
+          <div className="step">
+            <h3 className="step-title">2. Maksa jäsenmaksu 25€</h3>
+            <ul>
+              <li>
+                <strong>Jäsenmaksu:</strong> 25€ (vuosittainen 15€ + liittymismaksu 10€)
+              </li>
+              <li>
+                <strong>Tilinumero:</strong> FI29 4108 0013 1821 60
+              </li>
+              <li>
+                <strong>Maksunsaaja:</strong> Meidän Kerho ry
+              </li>
+              <li>
+                <strong>Ei viitettä. Kirjoita viestikenttään:</strong>{" "}
+                "Liittyminen24 etu- ja sukunimi"
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -75,7 +86,7 @@ const Join: React.FC = () => (
         />
       </div>
       <div className="component-wrapper">
-        <Instructions /> {/* Render the component properly */}
+        <Instructions />
       </div>
     </div>
   </>

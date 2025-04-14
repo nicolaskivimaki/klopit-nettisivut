@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import logo from "../assets/klopit_logo.png";
+import logo from "../assets/klopit_logo1.png";
 
 const Header: React.FC = () => {
   const { user, logout } = useAuth();

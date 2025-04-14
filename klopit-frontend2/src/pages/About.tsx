@@ -2,7 +2,7 @@ import React from "react";
 import BackgroundImage from "../components/BackgroundImage";
 import MembershipBenefits from "../components/MembershipBenefits";
 import TextBlock from "../components/TextBlock";
-import aboutBg from "../assets/meistä_kuva1.png";
+import aboutBg from "../assets/meista_kuva1.jpg";
 
 const About: React.FC = () => (
   <>

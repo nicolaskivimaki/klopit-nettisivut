@@ -1,6 +1,6 @@
 // src/components/Footer.tsx
 import React from "react";
-import logo from "../assets/klopit_logo.png"; // Adjust the path to your logo image
+import logo from "../assets/klopit_logo1.png"; // Adjust the path to your logo image
 
 const Footer: React.FC = () => {
   return (

@@ -1,7 +1,7 @@
 // src/components/MembershipBenefits.tsx
 import React from "react";
 import { Link } from "react-router-dom";
-import membershipImage from "../assets/jäsenyys_kuva1.png";
+import membershipImage from "../assets/jasenyys_kuva1.jpg";
 
 const MembershipBenefits: React.FC = () => {
   const benefitsDescription =
