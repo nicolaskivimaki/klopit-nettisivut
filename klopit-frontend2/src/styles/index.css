@@ -900,6 +900,7 @@ ul {
   .events-grid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 16px;
+    margin-top: 4px;
     padding: 0 8px;
   }
 
