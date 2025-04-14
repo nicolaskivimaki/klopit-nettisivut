@@ -118,7 +118,7 @@ h1, h2, h3 {
   margin-bottom: 16px;
 }
 h2 {
-  font-size: 2rem; /* 28px base size for mobile (smaller than your original 28pt/37.33px) */
+  font-size: 1.9rem; /* 28px base size for mobile (smaller than your original 28pt/37.33px) */
 }
 h3 {
   font-size: 16pt; /* Unchanged */
