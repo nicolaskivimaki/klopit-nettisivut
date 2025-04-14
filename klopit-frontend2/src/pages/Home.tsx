@@ -42,7 +42,7 @@ const Home: React.FC = () => {
             title="Tulevat tapahtumat"
           />
         </div>
-        <div className="component-wrapper spacing-medium">
+        <div className="component-wrapper spacing-medium membership-reduced-gap">
           <MembershipBenefits />
         </div>
         <div className="component-wrapper spacing-small">

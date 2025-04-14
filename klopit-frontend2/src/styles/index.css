@@ -1,4 +1,3 @@
-/* src/styles/index.css */
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Fjalla+One&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap');
@@ -119,7 +118,7 @@ h1, h2, h3 {
   margin-bottom: 16px;
 }
 h2 {
-  font-size: 1.75rem; /* 28px base size for mobile (smaller than your original 28pt/37.33px) */
+  font-size: 2rem; /* 28px base size for mobile (smaller than your original 28pt/37.33px) */
 }
 h3 {
   font-size: 16pt; /* Unchanged */
@@ -380,6 +379,7 @@ ul {
   }
 
   .nav-link {
+    margin-left: 16px;
     padding: 12px 0;
     text-align: left;
     width: 100%;
@@ -401,7 +401,7 @@ ul {
     position: absolute;
     top: 0;
     bottom: 0;
-    left: -8px; /* Adjusted for edge padding */
+    left: -24px; /* Adjusted for edge padding */
     width: 2px;
     height: auto;
     background-color: var(--primary-color);
@@ -528,6 +528,12 @@ ul {
   max-width: var(--content-max-width);
   margin: 0 auto;
   padding: 0 var(--edge-padding);
+}
+
+@media (max-width: 768px) {
+  .background-title {
+    font-size: 3rem; /* Matches h2 mobile */
+  }
 }
 
 /* ========== Create Event Form ========== */
@@ -716,23 +722,74 @@ ul {
 
 .events-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr)); /* Increased min-width */
-  gap: 32px; /* Increased gap for better spacing */
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 32px;
   width: 100%;
   margin-top: 0px;
 }
 
 .upcoming-events .home-events {
-  display: flex; /* Horizontal row for home page */
+  display: flex;
   flex-direction: row;
+  flex-wrap: nowrap;
   gap: 32px;
-  overflow-x: auto; /* Scroll on narrow screens */
-  scroll-snap-type: x mandatory; /* Snap to cards */
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
 }
 
 .component-wrapper .upcoming-events .home-events {
   padding-top: 0px;
   overflow: visible;
+}
+
+/* Mobile adjustments for Upcoming Events */
+@media (max-width: 768px) {
+  .upcoming-events {
+    overflow-x: visible;
+  }
+
+  .component-wrapper {
+    overflow-x: visible;
+  }
+
+  .upcoming-events .home-events {
+    gap: 12px;
+    margin-top: 4px;
+    padding: 0 8px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .upcoming-events .home-events .event-card {
+    flex: 0 0 280px;
+    max-width: 280px;
+    height: 260px;
+    padding: 16px;
+  }
+
+  /* Event card title */
+  .upcoming-events .home-events .event-card-title {
+    font-size: 1.3rem;
+  }
+
+  /* Center the "Tulevat tapahtumat" title on mobile */
+  .upcoming-events-title.home-events-title {
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Center the "Kaikki tapahtumat" button on mobile */
+  .upcoming-events .view-all .btn-primary {
+    display: block;
+    margin: 16px auto 0;
+  }
+
+  .scroll-container {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  
 }
 
 .event-card {
@@ -863,39 +920,6 @@ ul {
 }
 
 
-/* Mobile adjustments */
-@media (max-width: 768px) {
-  .events-grid {
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Slightly larger min width for readability */
-    gap: 16px; /* Smaller gap for mobile */
-  }
-
-  .upcoming-events .home-events {
-    gap: 12px; /* Even smaller gap for mobile row */
-    padding: 0 8px; /* Add padding to prevent edge clipping */
-  }
-
-  .upcoming-events .home-events .event-card {
-    flex: 0 0 280px; /* Slightly larger for better readability */
-    max-width: 280px;
-    height: 260px; /* Slightly taller for content */
-    padding: 16px; /* Consistent reduced padding */
-  }
-
-  .upcoming-events .home-events .event-card-title {
-    font-size: 1.1rem; /* Slightly smaller but readable */
-  }
-
-  .upcoming-events .home-events .event-card-date {
-    font-size: 0.8rem; /* Slightly larger for readability */
-  }
-
-  .upcoming-events .home-events .event-card-description {
-    font-size: 0.85rem; /* Slightly larger for readability */
-    -webkit-line-clamp: 2; /* Reduce to 2 lines for mobile */
-  }
-}
-
 /* ========== MembershipBenefits Section ========== */
 .membership-benefits {
   background-color: var(--component-background);
@@ -950,7 +974,7 @@ ul {
   object-fit: cover;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments for membership */
 @media (max-width: 768px) {
   .membership-content {
     flex-direction: column;
@@ -964,14 +988,20 @@ ul {
   }
   .membership-text {
     width: 100%;
-    align-items: flex-start; /* Left-align items */
-    text-align: left; /* Left-align text */
+    align-items: center; /* Center items */
+    text-align: center; /* Center text */
   }
   .membership-text p {
     margin-right: 0; /* Reset margin-right on mobile */
   }
   .membership-text .btn {
     margin-top: 16px;
+    align-self: center; /* Center button */
+  }
+
+  .membership-reduced-gap {
+    /* Reduce the bottom padding to, say, 20px */
+    padding-bottom: 0px !important;
   }
 }
 
@@ -1077,9 +1107,18 @@ ul {
 /* Mobile adjustments for donation-card */
 @media (max-width: 768px) {
   .donation-card {
-    padding-top: 42;
+    padding-top: 42px;
     padding: 28px; /* Uniform padding on mobile */
     padding-bottom: 42px;
+    text-align: center; /* Center-align content */
+  }
+  .donation-card .step ul {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .donation-card .step ul ul {
+    padding-left: 0; /* Remove indent for nested lists */
+    list-style-position: inside; /* Center bullets */
   }
 }
 
@@ -1205,10 +1244,24 @@ ul {
 }
 
 /* ========== Instagram Feed ========== */
-.instafeed {
-  text-align: center;
+.instagram-feed {
   padding: var(--component-vertical-padding) var(--edge-padding);
   background-color: var(--component-background);
+}
+
+.instagram-feed h2 {
+  text-align: left; /* Left-aligned on desktop */
+  color: var(--heading-color); /* White */
+  font-family: var(--heading-font-family); /* Roboto Black */
+  font-size: 2.2rem; /* Desktop h2 size */
+  margin: 0 0 16px; /* Consistent spacing */
+  line-height: 1.2; /* Matches other titles */
+}
+
+@media (max-width: 768px) {
+  .instagram-feed h2 {
+    text-align: center; /* Centered on mobile */
+  }
 }
 
 /* ========== Footer ========== */
@@ -2084,4 +2137,3 @@ input:focus + .toggle-slider {
 .input-field:focus {
   border-color: var(--secondary-color);
 }
-

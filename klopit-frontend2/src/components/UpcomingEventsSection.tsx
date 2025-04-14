@@ -41,28 +41,34 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
 
   return (
     <div className="upcoming-events">
-      <h2 className={`upcoming-events-title ${isHomePage ? "home-events-title" : ""}`}>{title}</h2>
-      <div className={isHomePage ? "home-events" : "events-grid"}>
-        {displayedEvents.map((event, index) => (
-          <div key={event._id} className="event-card">
-            <div className="event-card-content">
-              <h3 className="event-card-title">{event.title}</h3>
-              <p className="event-card-date">{formatDate(event.date)}</p>
-              <p className="event-card-description">
-                {event.description.length > 100
-                  ? `${event.description.substring(0, 100)}...`
-                  : event.description}
-              </p>
-              <div className={`event-card-accent accent-${index + 1}`}></div>
+      <h2 className={`upcoming-events-title ${isHomePage ? "home-events-title" : ""}`}>
+        {title}
+      </h2>
+      {/* New wrapper for horizontal scrolling */}
+      <div className="scroll-container">
+        <div className={isHomePage ? "home-events" : "events-grid"}>
+          {displayedEvents.map((event, index) => (
+            <div key={event._id} className="event-card">
+              {/* Event card content */}
+              <div className="event-card-content">
+                <h3 className="event-card-title">{event.title}</h3>
+                <p className="event-card-date">{formatDate(event.date)}</p>
+                <p className="event-card-description">
+                  {event.description.length > 100
+                    ? `${event.description.substring(0, 100)}...`
+                    : event.description}
+                </p>
+                <div className={`event-card-accent accent-${index + 1}`}></div>
+              </div>
+              <Link
+                to={`/events/${event._id}?from=${isHomePage ? "home" : "events"}`}
+                className="btn btn-primary"
+              >
+                Lue lisää
+              </Link>
             </div>
-            <Link
-              to={`/events/${event._id}?from=${isHomePage ? "home" : "events"}`}
-              className="btn btn-primary"
-            >
-              Lue lisää
-            </Link>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
       {showViewAll && (
         <div className="view-all">
@@ -71,7 +77,7 @@ const UpcomingEventsSection: React.FC<UpcomingEventsSectionProps> = ({
           </Link>
         </div>
       )}
-    </div>
+    </div>  
   );
 };
 
