@@ -1,8 +1,8 @@
-// src/pages/Join.tsx
 import React from "react";
 import BackgroundImage from "../components/BackgroundImage";
 import joinBg from "../assets/jasenyys_kuva2.jpg";
 import TextBlock from "../components/TextBlock";
+import FadeInOnScroll from "../components/FadeInOnScroll";
 
 const benefits = [
   "Pääset osallistumaan seinäjokisen kannattajakulttuurin edistämiseen.",
@@ -78,16 +78,20 @@ const Join: React.FC = () => (
       variant="default"
     />
     <div className="container page-content">
-      <div className="component-wrapper">
-        <TextBlock
-          heading="Jäsenyyden edut"
-          content="Kloppien jäsenenä pääset nauttimaan muun muassa seuraavista jäseneduista:"
-          list={benefits}
-        />
-      </div>
-      <div className="component-wrapper">
-        <Instructions />
-      </div>
+      <FadeInOnScroll>
+        <div className="component-wrapper">
+          <TextBlock
+            heading="Jäsenyyden edut"
+            content="Kloppien jäsenenä pääset nauttimaan muun muassa seuraavista jäseneduista:"
+            list={benefits}
+          />
+        </div>
+      </FadeInOnScroll>
+      <FadeInOnScroll>
+        <div className="component-wrapper">
+          <Instructions />
+        </div>
+      </FadeInOnScroll>
     </div>
   </>
 );

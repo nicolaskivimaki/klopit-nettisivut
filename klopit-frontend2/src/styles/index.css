@@ -429,14 +429,11 @@ ul {
 
   /* Ensure logout button retains button styling in mobile menu */
   .nav-links .btn.btn-primary.logout-button {
-    width: 50%; /* Match nav link width */
-    text-align: left; /* Align text to the left */
-    padding: 8px 16px; /* Match desktop padding */
-    height: 35px; /* Match desktop height */
-    margin: 0; /* Remove any extra margin */
-    display: flex; /* Ensure proper alignment */
-    align-items: center; /* Center text vertically */
-    justify-content: flex-start; /* Align text to the left */
+    width: 100%;
+    padding: 12px 16px;
+    height: auto;
+    justify-content: center;
+    text-align: center;
   }
 }
 
@@ -1759,6 +1756,7 @@ input:focus + .toggle-slider {
   border-color: var(--hover-color); /* #ffffff */
 }
 
+
 .login-card .btn.btn-primary {
   width: 50%; /* Matches your updated setting */
   margin-top: 16px;
@@ -1766,6 +1764,13 @@ input:focus + .toggle-slider {
   z-index: 2;
   transition: all 0.3s ease; /* Ensure transition is applied */
   border: none; /* Explicitly ensure no border */
+}
+
+@media (max-width: 768px) {
+  .login-card .btn.btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .login-card .btn.btn-primary:hover {
@@ -1788,6 +1793,7 @@ input:focus + .toggle-slider {
   .login-card {
     padding: 16px; /* Reduced padding */
     max-width: 100%; /* Full-width on mobile */
+    margin: 24px;
   }
 
   .input-field {
@@ -2160,3 +2166,79 @@ input:focus + .toggle-slider {
 .input-field:focus {
   border-color: var(--secondary-color);
 }
+
+/* ========== Scroll-Triggered Animations ========== */
+
+/* Keyframes Definitions */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade-in animation for background titles */
+/* Fade-in and slide-up animation for background titles */
+@keyframes titleFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.background-title {
+  animation: titleFadeInUp 0.6s ease-out forwards;
+  will-change: opacity, transform;
+}
+
+

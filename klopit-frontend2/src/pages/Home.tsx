@@ -6,6 +6,7 @@ import MembershipBenefits from "../components/MembershipBenefits";
 import Donations from "../components/Donations";
 import InstaFeed from "../components/InstaFeed";
 import homeBg from "../assets/etusivu_kuva1.jpg";
+import FadeInOnScroll from "../components/FadeInOnScroll";
 import config from "../config";
 
 interface EventType {
@@ -34,23 +35,31 @@ const Home: React.FC = () => {
         variant="frontPage"
       />
       <div className="container page-content">
+        <FadeInOnScroll>
         <div className="component-wrapper">
-          <UpcomingEventsSection
-            events={events}
-            isHomePage={true}
-            maxEvents={3}
-            title="Tulevat tapahtumat"
-          />
-        </div>
-        <div className="component-wrapper spacing-medium membership-reduced-gap">
-          <MembershipBenefits />
-        </div>
-        <div className="component-wrapper spacing-small">
-          <Donations />
-        </div>
-        <div className="component-wrapper">
-          <InstaFeed />
-        </div>
+            <UpcomingEventsSection
+              events={events}
+              isHomePage={true}
+              maxEvents={3}
+              title="Tulevat tapahtumat"
+            />
+          </div>
+        </FadeInOnScroll>
+        <FadeInOnScroll>
+          <div className="component-wrapper spacing-medium membership-reduced-gap">
+            <MembershipBenefits />
+          </div>
+        </FadeInOnScroll>
+        <FadeInOnScroll>
+          <div className="component-wrapper spacing-small">
+            <Donations />
+          </div>
+        </FadeInOnScroll>
+        <FadeInOnScroll>
+          <div className="component-wrapper">
+            <InstaFeed />
+          </div>
+        </FadeInOnScroll>
       </div>
     </>
   );
