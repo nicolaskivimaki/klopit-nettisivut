@@ -18,7 +18,7 @@ const About: React.FC = () => (
         <div className="component-wrapper">
         <TextBlock
           heading="Meidän Kerho ry"
-          content={`Meidän Kerho ryn on SJK-kannattajien perustama yhdistys, jonka tarkoituksena on tukea sekä edistää jalkapallo- ja kannattajakulttuuria Seinäjoella.
+          content={`Meidän Kerho ry on SJK-kannattajien perustama yhdistys, jonka tarkoituksena on tukea sekä edistää jalkapallo- ja kannattajakulttuuria Seinäjoella.
           
           Yhdistys järjestää vieraspelimatkoja, myy kannattajatuotteita, järjestää kannattajia yhteisöllistäviä tapahtumia, järjestää talkoita toteuttaakseen katsomokoreografioita ja on yksi neuvottelupuolista seuran ja tukiryhmien kanssa, kun sovitaan kannattajatoimintaan sekä ottelutapahtumissa siihen vaikuttavista asioista. 
           
