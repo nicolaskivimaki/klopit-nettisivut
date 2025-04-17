@@ -5,13 +5,11 @@ import TextBlock from "../components/TextBlock";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 
 const benefits = [
-  "Pääset osallistumaan seinäjokisen kannattajakulttuurin edistämiseen.",
-  "Katsomokoreografioiden ja -materiaalien mahdollistaminen.",
-  "Alennetut jäsenhinnat yhdistyksen järjestämistä matkoista vieraspeleihin, sekä yhdistyksen kannattajatuotteista (t-paidat, huivit, hupparit jne.).",
-  "Oikeus osallistua yhdistyksen järjestämiin tapahtumiin ja virkistysiltoihin.",
-  "Vastaamismahdollisuus vain jäsenille tarkoitettuihin kyselyihin ja siten yhdistyksen toimintaan vaikuttaminen.",
-  "Oikeus mahdollisten yhteistyökumppaneiden kanssa sovittaviin etuihin.",
-  "Läsnäolo- ja äänestysoikeus yhdistyksen vuosikokouksessa.",
+  "OmaSP Stadion/SJK - Kaikista aikuisten juomista -25%",
+  "SJK-Juniorit/kannattajapäädyn kioski - Makkara 2€, kahvi 2,50€, vesi oston yhteydessä maksutta, muuten 1€.",
+  "Irish Pub Danny Boy - Hanajuomat -15%",
+  "El Cebo - Annoksista -10% (ei koske lounasaikaa)",
+  "Seinäjoen Keilahalli - Salikäynneistä ja -korteista opiskelijahinnat",
 ];
 
 const Instructions: React.FC = () => {
@@ -20,13 +18,13 @@ const Instructions: React.FC = () => {
       <div className="donations-content">
         <h2>Liittymisohje Meidän Kerho ry:n jäseneksi</h2>
         <p>
-        Jäseneksi voit liittyä lähettämällä tarvittavat tiedot sähköpostitse ja maksamalla jäsenmaksun. Toimi näin:
+          Jäseneksi voit liittyä lähettämällä tarvittavat tiedot sähköpostitse ja maksamalla jäsenmaksun. Toimi näin:
         </p>
         <div className="donation-card">
           <div className="step">
             <h3 className="step-title">1. Lähetä sähköpostiviesti</h3>
             <ul>
-            <li>
+              <li>
                 <strong>Osoite:</strong> posti@meidankerho.fi
               </li>
               <li>
@@ -40,16 +38,18 @@ const Instructions: React.FC = () => {
                   <li>Puhelinnumero</li>
                 </ul>
               </li>
-               <p></p>
-              <li>
-              </li>
+              <p></p>
+              <li></li>
             </ul>
           </div>
           <div className="step">
-            <h3 className="step-title">2. Maksa jäsenmaksu 25€</h3>
+            <h3 className="step-title">2. Maksa jäsenmaksu</h3>
             <ul>
               <li>
-                <strong>Jäsenmaksu:</strong> 25€ (vuosittainen 15€ + liittymismaksu 10€)
+                <strong>Uusi jäsen:</strong> 30€ (vuosittainen 20€ + liittymismaksu 10€)
+              </li>
+              <li>
+                <strong>Vanha jäsen:</strong> 20€ (vuosittainen jäsenmaksu)
               </li>
               <li>
                 <strong>Tilinumero:</strong> FI29 4108 0013 1821 60
@@ -58,8 +58,11 @@ const Instructions: React.FC = () => {
                 <strong>Maksunsaaja:</strong> Meidän Kerho ry
               </li>
               <li>
-                <strong>Ei viitettä. Kirjoita viestikenttään:</strong>{" "}
-                "Liittyminen24 etu- ja sukunimi"
+                <strong>Ei viitettä. Kirjoita viestikenttään:</strong>
+                <ul>
+                  <li>Uusi jäsen: "Liittyminen25"</li>
+                  <li>Vanha jäsen: "Jäsenmaksu25"</li>
+                </ul>
               </li>
             </ul>
           </div>
@@ -82,7 +85,7 @@ const Join: React.FC = () => (
         <div className="component-wrapper">
           <TextBlock
             heading="Jäsenyyden edut"
-            content="Kloppien jäsenenä pääset nauttimaan muun muassa seuraavista jäseneduista:"
+            content="Oikeus mahdollisten ytkeiden kanssa:"
             list={benefits}
           />
         </div>

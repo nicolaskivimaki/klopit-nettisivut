@@ -55,11 +55,6 @@ const Home: React.FC = () => {
             <Donations />
           </div>
         </FadeInOnScroll>
-        <FadeInOnScroll>
-          <div className="component-wrapper">
-            <InstaFeed />
-          </div>
-        </FadeInOnScroll>
       </div>
     </>
   );

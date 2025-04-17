@@ -75,7 +75,7 @@ const Header: React.FC = () => {
             className={`nav-link ${isActive("/chants")}`} // Fixed: Added isActive
             onClick={closeMenu} // Added: Close menu on click
           >
-            Chants
+            Chänttikirja
           </Link>
           {user && (
             <button onClick={handleLogout} className="btn btn-primary logout-button">

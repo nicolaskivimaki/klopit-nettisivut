@@ -18,13 +18,13 @@ const About: React.FC = () => (
         <div className="component-wrapper">
         <TextBlock
           heading="Meidän Kerho ry"
-          content={`Klopit Seinäjoki on intohimoinen ja omistautunut SJK:n kannattajaryhmä, joka tuo kansainvälisen fanikulttuurin tuulahduksen Pohjanmaalle. Klopit muodostavat SJK:n kannattajapäädyn sydämen OmaSp Stadionin länsipäädyn seisomakatsomossa. Heidän mustakultaiset värit, liput ja bannerit näkyvät kauas, ja ryhmän luoma tunnelma kuuluu stadionin jokaiselle nurkalle – parhaimmillaan jopa kansainvälisten areenojen tasolla.
-
-          Klopit eivät tue pelkästään omiaan katsomossa. He ovat järjestäneet rockfestivaaleja, palkinneet vuosittain Vuoden Pelaajan Kloppien Kannu -kiertopalkinnolla ja olleet mukana talkoohengessä tukemassa seuraa vaikeina hetkinä. Vieraspelireissuista paikalliseen kannattajakulttuurin kehittämiseen, Klopit ovat keskeinen osa SJK-perhettä.
-
-          Vuonna 2010 Klopit palkittiin Pohjanmaan Urheilugaalassa Vuoden Jokeri -palkinnolla tunnustuksena heidän arvokkaasta panoksestaan alueen jalkapallokulttuuriin. Klopit elävät periaatteella: tuki omille on aina taattua, eikä koskaan luovuteta.
-
-          Liity mukaan ja koe yhdessä kannattamisen ilo ja voima – niin kotona kuin vieraissa!`}
+          content={`Meidän Kerho ryn on SJK-kannattajien perustama yhdistys, jonka tarkoituksena on tukea sekä edistää jalkapallo- ja kannattajakulttuuria Seinäjoella.
+          
+          Yhdistys järjestää vieraspelimatkoja, myy kannattajatuotteita, järjestää kannattajia yhteisöllistäviä tapahtumia, järjestää talkoita toteuttaakseen katsomokoreografioita ja on yksi neuvottelupuolista seuran ja tukiryhmien kanssa, kun sovitaan kannattajatoimintaan sekä ottelutapahtumissa siihen vaikuttavista asioista. 
+          
+          Meidän Kerho ry on voittoa tavoittelematon yhdistys, jonka keräämät jäsen- ja tukimaksut menevät suoraan toiminnan kehittämiseen, kuten vieraspelimatkoihin, katsomomateriaaleihin sekä tifoihin.
+          
+          Yhdistys ei ole yksittäinen kannattajaryhmä, vaan toimii palvellakseen kaikkia ryhmiä ja yksittäisiä SJK-kannattajia syrjimättä ja valikoimatta.`}
           />
         </div>
       </FadeInOnScroll>

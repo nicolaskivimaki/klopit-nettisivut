@@ -20,7 +20,6 @@ const Chants: React.FC = () => {
   const [editingChantId, setEditingChantId] = useState<string | null>(null);
   const [editFormData, setEditFormData] = useState<Partial<ChantType>>({});
   const [error, setError] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
     const fetchChants = async () => {
@@ -39,10 +38,6 @@ const Chants: React.FC = () => {
 
     fetchChants();
   }, []);
-
-  const filteredChants = chants.filter((chant) =>
-    chant.title.toLowerCase().indexOf(searchQuery.toLowerCase()) !== -1
-  );
 
   const handleDeleteChant = async (chantId: string) => {
     if (!user?.isAdmin) return;
@@ -136,7 +131,7 @@ const Chants: React.FC = () => {
     return (
       <div className="container page-content">
         <div className="component-wrapper">
-          <h2 className="upcoming-events-title">Chanttikirja</h2>
+          <h2 className="upcoming-events-title">Chänttikirja</h2>
           <p className="error-message">{error}</p>
         </div>
       </div>
@@ -146,150 +141,141 @@ const Chants: React.FC = () => {
   return (
     <>
       <BackgroundImage image="" title="" description="" variant="default" />
-      
       <div className="container page-content">
-      <FadeInOnScroll>
-      <div className="component-wrapper">
-        <h2 className="upcoming-events-title" style={{ marginBottom: "45px" }}>
-          Chanttikirja
-        </h2>
-        <input
-          type="text"
-          className="input-field"
-          placeholder="Etsi chantteja..."
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          style={{ width: "100%", maxWidth: "400px", marginBottom: "30px" }}
-        />
-        {/* Admin controls moved to the top */}
-        {user?.isAdmin && (
-          <div className="button-container" style={{ marginBottom: "24px" }}>
-            {!editMode ? (
-              <button
-                className="btn btn-secondary"
-                onClick={() => setEditMode(true)}
-              >
-                Muokkaa chantteja
-              </button>
-            ) : (
-              <>
-                <Link to="/chants/new">
+        <FadeInOnScroll>
+          <div className="component-wrapper">
+            <h2 className="upcoming-events-title" style={{ marginBottom: "45px" }}>
+              Chänttikirja
+            </h2>
+            {/* Admin controls */}
+            {user?.isAdmin && (
+              <div className="button-container" style={{ marginBottom: "24px" }}>
+                {!editMode ? (
                   <button
-                    className="btn btn-primary"
-                    style={{ marginRight: "16px" }}
+                    className="btn btn-secondary"
+                    onClick={() => setEditMode(true)}
                   >
-                    Lisää chantti
+                    Muokkaa chantteja
                   </button>
-                </Link>
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => setEditMode(false)}
-                >
-                  Valmis
-                </button>
-              </>
-            )}
-          </div>
-        )}
-        <div className="chants-grid">
-          {filteredChants.length > 0 ? (
-            filteredChants.map((chant) => (
-              <div key={chant._id}>
-                {editingChantId === chant._id ? (
-                  <div className="edit-chant-form">
-                    <div className="form-group">
-                      <label className="form-label">Otsikko</label>
-                      <input
-                        type="text"
-                        name="title"
-                        className="input-field"
-                        value={editFormData.title || ""}
-                        onChange={handleEditChange}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label className="form-label">Sanoitus</label>
-                      <textarea
-                        name="lyrics"
-                        className="input-field"
-                        value={editFormData.lyrics || ""}
-                        onChange={handleEditChange}
-                        rows={4}
-                        required
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label className="form-label">Tekijä (valinnainen)</label>
-                      <input
-                        type="text"
-                        name="author"
-                        className="input-field"
-                        value={editFormData.author || ""}
-                        onChange={handleEditChange}
-                      />
-                    </div>
-                    <div className="form-group">
-                      <label className="form-label">Kategoria (valinnainen)</label>
-                      <input
-                        type="text"
-                        name="category"
-                        className="input-field"
-                        value={editFormData.category || ""}
-                        onChange={handleEditChange}
-                      />
-                    </div>
-                    <div className="form-buttons">
+                ) : (
+                  <>
+                    <Link to="/chants/new">
                       <button
                         className="btn btn-primary"
-                        onClick={() => handleEditSubmit(chant._id)}
+                        style={{ marginRight: "16px" }}
                       >
-                        Tallenna
+                        Lisää chantti
                       </button>
-                      <button
-                        className="btn btn-secondary"
-                        onClick={handleCancelEdit}
-                      >
-                        Peruuta
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <Link to={`/chants/${chant._id}`} className="chant-title-box">
-                    <h3 className="chant-title">{chant.title}</h3>
-                    {editMode && user?.isAdmin && (
-                      <div className="admin-buttons">
-                        <button
-                          className="btn btn-primary"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleEditClick(chant);
-                          }}
-                        >
-                          Muokkaa
-                        </button>
-                        <button
-                          className="btn btn-secondary"
-                          onClick={(e) => {
-                            e.preventDefault();
-                            handleDeleteChant(chant._id);
-                          }}
-                        >
-                          Poista
-                        </button>
-                      </div>
-                    )}
-                  </Link>
+                    </Link>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={() => setEditMode(false)}
+                    >
+                      Valmis
+                    </button>
+                  </>
                 )}
               </div>
-            ))
-          ) : (
-            <p>Ei chantteja saatavilla tai hakuehdoilla ei löydy tuloksia.</p>
-          )}
-        </div>
+            )}
+            <div className="chants-grid">
+              {chants.length > 0 ? (
+                chants.map((chant) => (
+                  <div key={chant._id}>
+                    {editingChantId === chant._id ? (
+                      <div className="edit-chant-form">
+                        <div className="form-group">
+                          <label className="form-label">Otsikko</label>
+                          <input
+                            type="text"
+                            name="title"
+                            className="input-field"
+                            value={editFormData.title || ""}
+                            onChange={handleEditChange}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">Sanoitus</label>
+                          <textarea
+                            name="lyrics"
+                            className="input-field"
+                            value={editFormData.lyrics || ""}
+                            onChange={handleEditChange}
+                            rows={4}
+                            required
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">Tekijä (valinnainen)</label>
+                          <input
+                            type="text"
+                            name="author"
+                            className="input-field"
+                            value={editFormData.author || ""}
+                            onChange={handleEditChange}
+                          />
+                        </div>
+                        <div className="form-group">
+                          <label className="form-label">Kategoria (valinnainen)</label>
+                          <input
+                            type="text"
+                            name="category"
+                            className="input-field"
+                            value={editFormData.category || ""}
+                            onChange={handleEditChange}
+                          />
+                        </div>
+                        <div className="form-buttons">
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => handleEditSubmit(chant._id)}
+                          >
+                            Tallenna
+                          </button>
+                          <button
+                            className="btn btn-secondary"
+                            onClick={handleCancelEdit}
+                          >
+                            Peruuta
+                          </button>
+                        </div>
+                      </div>
+                    ) : (
+                      <Link to={`/chants/${chant._id}`} className="chant-title-box">
+                        <h3 className="chant-title">{chant.title}</h3>
+                        {editMode && user?.isAdmin && (
+                          <div className="admin-buttons">
+                            <button
+                              className="btn btn-primary"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleEditClick(chant);
+                              }}
+                            >
+                              Muokkaa
+                            </button>
+                            <button
+                              className="btn btn-secondary"
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleDeleteChant(chant._id);
+                              }}
+                            >
+                              Poista
+                            </button>
+                          </div>
+                        )}
+                      </Link>
+                    )}
+                  </div>
+                ))
+              ) : (
+                <p>Ei chantteja saatavilla.</p>
+              )}
+            </div>
+          </div>
+        </FadeInOnScroll>
       </div>
-      </FadeInOnScroll>
-    </div>
     </>
   );
 };
