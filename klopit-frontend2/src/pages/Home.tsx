@@ -4,7 +4,6 @@ import BackgroundImage from "../components/BackgroundImage";
 import UpcomingEventsSection from "../components/UpcomingEventsSection";
 import MembershipBenefits from "../components/MembershipBenefits";
 import Donations from "../components/Donations";
-import InstaFeed from "../components/InstaFeed";
 import homeBg from "../assets/etusivu_kuva1.jpg";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 import config from "../config";
