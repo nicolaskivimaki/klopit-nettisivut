@@ -50,3 +50,4 @@ coverage/
 **/node_modules/
 
 klopit-backend/tests/
+/uploads

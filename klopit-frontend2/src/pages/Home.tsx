@@ -7,6 +7,7 @@ import Donations from "../components/Donations";
 import homeBg from "../assets/etusivu_kuva1.jpg";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 import config from "../config";
+import membershipHomeImage from "../assets/jasenyys_kuva1.jpg";
 
 interface EventType {
   _id: string;
@@ -46,7 +47,7 @@ const Home: React.FC = () => {
         </FadeInOnScroll>
         <FadeInOnScroll>
           <div className="component-wrapper spacing-medium membership-reduced-gap">
-            <MembershipBenefits />
+            <MembershipBenefits imageSrc={membershipHomeImage} />
           </div>
         </FadeInOnScroll>
         <FadeInOnScroll>

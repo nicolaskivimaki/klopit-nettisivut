@@ -128,141 +128,139 @@ const Events: React.FC = () => {
     <>
       <BackgroundImage image="" title="" description="" variant="default" />
       <div className="container page-content">
-        {user?.isAdmin && (
-          <div className="component-wrapper spacing-small">
-            {!editMode ? (
-              <div className="button-container">
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => setEditMode(true)}
-                >
-                  Muokkaa tapahtumia
-                </button>
-              </div>
-            ) : (
-              <div className="button-container">
-                <Link to="/events/new">
-                  <button
-                    className="btn btn-primary"
-                    style={{ marginRight: "16px" }}
-                  >
-                    Lisää tapahtuma
-                  </button>
-                </Link>
-                <button
-                  className="btn btn-secondary"
-                  onClick={() => setEditMode(false)}
-                >
-                  Valmis
-                </button>
-              </div>
-            )}
-          </div>
-        )}
-
         <FadeInOnScroll>
           <div className="component-wrapper">
             {editMode ? (
-              <div className="events-grid">
-                {events.map((event) => (
-                  <div key={event._id} className="event-card admin-event-card">
-                    {editingEventId === event._id ? (
-                      <div className="edit-event-form">
-                        <div className="form-group">
-                          <label className="form-label">Otsikko</label>
-                          <input
-                            type="text"
-                            name="title"
-                            className="input-field"
-                            value={editFormData.title || ""}
-                            onChange={handleEditChange}
-                            required
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label className="form-label">Päivämäärä</label>
-                          <input
-                            type="date"
-                            name="date"
-                            className="input-field"
-                            value={editFormData.date || ""}
-                            onChange={handleEditChange}
-                            required
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label className="form-label">Kuvaus</label>
-                          <textarea
-                            name="description"
-                            className="input-field"
-                            value={editFormData.description || ""}
-                            onChange={handleEditChange}
-                            rows={4}
-                            required
-                          />
-                        </div>
-                        <div className="form-group">
-                          <label className="form-label">
-                            Maksimimäärä osallistujia (valinnainen)
-                          </label>
-                          <input
-                            type="number"
-                            name="maxParticipants"
-                            className="input-field"
-                            value={editFormData.maxParticipants ?? ""}
-                            onChange={handleEditChange}
-                            min={1}
-                          />
-                        </div>
-                        <div className="form-buttons">
-                          <button
-                            className="btn btn-primary"
-                            onClick={() => handleEditSubmit(event._id)}
-                          >
-                            Tallenna
-                          </button>
-                          <button
-                            className="btn btn-secondary"
-                            onClick={handleCancelEdit}
-                          >
-                            Peruuta
-                          </button>
-                        </div>
-                      </div>
-                    ) : (
-                      <Link to={`/events/${event._id}?from=events`}>
-                        <div className="event-card-content">
-                          <p className="event-card-date">
-                            {new Date(event.date).toLocaleDateString("fi-FI")}
-                          </p>
-                          <h3 className="event-card-title">{event.title}</h3>
-                          <p className="event-card-description">{event.description}</p>
-                          <div className="admin-buttons">
+              <>
+                {user?.isAdmin && (
+                  <div
+                    className="button-container"
+                    style={{ marginBottom: "24px" }}
+                  >
+                    <Link to="/events/new">
+                      <button
+                        className="btn btn-primary"
+                        style={{ marginRight: "16px" }}
+                      >
+                        Lisää tapahtuma
+                      </button>
+                    </Link>
+                    <button
+                      className="btn btn-secondary"
+                      onClick={() => setEditMode(false)}
+                    >
+                      Valmis
+                    </button>
+                  </div>
+                )}
+                <div className="events-grid">
+                  {events.map((event) => (
+                    <div
+                      key={event._id}
+                      className="event-card admin-event-card"
+                    >
+                      {editingEventId === event._id ? (
+                        <div className="edit-event-form">
+                          <div className="form-group">
+                            <label className="form-label">Otsikko</label>
+                            <input
+                              type="text"
+                              name="title"
+                              className="input-field"
+                              value={editFormData.title || ""}
+                              onChange={handleEditChange}
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Päivämäärä</label>
+                            <input
+                              type="date"
+                              name="date"
+                              className="input-field"
+                              value={editFormData.date || ""}
+                              onChange={handleEditChange}
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">Kuvaus</label>
+                            <textarea
+                              name="description"
+                              className="input-field"
+                              value={editFormData.description || ""}
+                              onChange={handleEditChange}
+                              rows={4}
+                              required
+                            />
+                          </div>
+                          <div className="form-group">
+                            <label className="form-label">
+                              Maksimimäärä osallistujia (valinnainen)
+                            </label>
+                            <input
+                              type="number"
+                              name="maxParticipants"
+                              className="input-field"
+                              value={editFormData.maxParticipants ?? ""}
+                              onChange={handleEditChange}
+                              min={1}
+                            />
+                          </div>
+                          <div className="form-buttons">
                             <button
                               className="btn btn-primary"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleEditClick(event);
-                              }}
+                              onClick={() => handleEditSubmit(event._id)}
                             >
-                              Muokkaa
+                              Tallenna
                             </button>
                             <button
                               className="btn btn-secondary"
-                              onClick={(e) => {
-                                e.preventDefault();
-                                handleDeleteEvent(event._id);
-                              }}
+                              onClick={handleCancelEdit}
                             >
-                              Poista
+                              Peruuta
                             </button>
                           </div>
                         </div>
-                      </Link>
-                    )}
-                  </div>
-                ))}
-              </div>
+                      ) : (
+                        <Link to={`/events/${event._id}?from=events`}>
+                          <div className="event-card-content">
+                            <p className="event-card-date">
+                              {new Date(event.date).toLocaleDateString(
+                                "fi-FI"
+                              )}
+                            </p>
+                            <h3 className="event-card-title">{event.title}</h3>
+                            <p className="event-card-description">
+                              {event.description}
+                            </p>
+                            <div className="admin-buttons">
+                              <button
+                                className="btn btn-primary"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleEditClick(event);
+                                }}
+                              >
+                                Muokkaa
+                              </button>
+                              <button
+                                className="btn btn-secondary"
+                                onClick={(e) => {
+                                  e.preventDefault();
+                                  handleDeleteEvent(event._id);
+                                }}
+                              >
+                                Poista
+                              </button>
+                            </div>
+                          </div>
+                        </Link>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </>
             ) : (
               <>
                 <div className="view-toggle-container">
@@ -279,6 +277,20 @@ const Events: React.FC = () => {
                     </label>
                   </div>
                 </div>
+
+                {user?.isAdmin && (
+                  <div
+                    className="button-container"
+                    style={{ marginTop: "24px", marginBottom: "24px" }}
+                  >
+                    <button
+                      className="btn btn-secondary"
+                      onClick={() => setEditMode(true)}
+                    >
+                      Muokkaa tapahtumia
+                    </button>
+                  </div>
+                )}
 
                 {viewMode === "list" ? (
                   <UpcomingEventsSection

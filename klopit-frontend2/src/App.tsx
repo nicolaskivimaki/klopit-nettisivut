@@ -15,6 +15,9 @@ import { AuthProvider, useAuth } from "./context/AuthContext";
 import Chants from "./pages/Chants";
 import CreateChant from "./pages/CreateChant";
 import ChantDetail from "./pages/ChantDetail";
+import Gallery from "./pages/Gallery";
+import AlbumPage from "./pages/AlbumPage";
+import AdminGallery from "./pages/AdminGallery";
 
 const PrivateRoute = ({ children }: { children: JSX.Element }) => {
   const { user } = useAuth();
@@ -38,6 +41,9 @@ const App: React.FC = () => {
         <Route path="/chants" element={<Chants/>} />
         <Route path="/chants/new" element={<CreateChant />} />
         <Route path="/chants/:id" element={<ChantDetail />} />
+        <Route path="/gallery" element={<Gallery />} />
+        <Route path="/gallery/:id" element={<AlbumPage />} />
+        <Route path="/admin/gallery" element={<PrivateRoute><AdminGallery /></PrivateRoute>} />
       </Routes>
       <Footer />
     </div>

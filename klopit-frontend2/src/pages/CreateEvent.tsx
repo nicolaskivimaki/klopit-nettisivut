@@ -17,13 +17,10 @@ import {
 const CreateEvent: React.FC = () => {
   const { user } = useAuth();
   const navigate = useNavigate();
-
   const [title, setTitle] = useState("");
   const [date, setDate] = useState<Date | null>(null);
   const [dateInput, setDateInput] = useState("");
   const [description, setDescription] = useState("");
-  const [maxParticipants, setMaxParticipants] = useState<number | undefined>();
-  const [limitEnabled, setLimitEnabled] = useState(false);
   const [showCalendar, setShowCalendar] = useState(false);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [dateError, setDateError] = useState<string | null>(null);
@@ -81,7 +78,6 @@ const CreateEvent: React.FC = () => {
           title,
           date: date.toISOString(),
           description,
-          maxParticipants: limitEnabled ? maxParticipants : undefined,
         }),
       });
 
@@ -241,30 +237,6 @@ const CreateEvent: React.FC = () => {
                   required
                 />
               </div>
-
-              <div className="form-group">
-                <label>
-                  <input
-                    type="checkbox"
-                    checked={limitEnabled}
-                    onChange={() => setLimitEnabled(!limitEnabled)}
-                  />
-                  &nbsp;Rajoita osallistujamäärä
-                </label>
-              </div>
-
-              {limitEnabled && (
-                <div className="form-group">
-                  <label className="form-label">Maksimimäärä osallistujia</label>
-                  <input
-                    type="number"
-                    className="input-field"
-                    value={maxParticipants ?? ""}
-                    onChange={(e) => setMaxParticipants(Number(e.target.value))}
-                    min={1}
-                  />
-                </div>
-              )}
               <button type="submit" className="btn btn-primary">
                 Tallenna
               </button>

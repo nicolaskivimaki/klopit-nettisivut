@@ -77,6 +77,22 @@ const Header: React.FC = () => {
           >
             Chänttikirja
           </Link>
+          <Link
+            to="/gallery"
+            className={`nav-link ${isActive("/gallery")}`}
+            onClick={closeMenu}
+          >
+            Galleria
+          </Link>
+          {user?.isAdmin && (
+            <Link
+              to="/admin/gallery"
+              className={`nav-link ${isActive("/admin/gallery")}`}
+              onClick={closeMenu}
+            >
+              Gallerian Hallinta
+            </Link>
+          )}
           {user && (
             <button onClick={handleLogout} className="btn btn-primary logout-button">
               Kirjaudu ulos
