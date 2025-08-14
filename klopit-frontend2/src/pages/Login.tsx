@@ -4,22 +4,23 @@ import { useAuth } from "../context/AuthContext";
 import BackgroundImage from "../components/BackgroundImage";
 
 const Login: React.FC = () => {
-  const { login, user } = useAuth(); // Access login function and user from AuthContext
-  const [formData, setFormData] = useState({ email: "", password: "" });
+  const { login, user } = useAuth();
+  // Changed state to use 'username'
+  const [formData, setFormData] = useState({ username: "", password: "" });
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      await login(formData.email, formData.password);
-      navigate("/home"); // Redirect to home page after successful login
+      // Pass username to the login function
+      await login(formData.username, formData.password);
+      navigate("/home"); 
     } catch (err: any) {
       setError(err.message || "Kirjautuminen epäonnistui. Yritä uudelleen.");
     }
   };
 
-  // Automatically redirect user if already logged in
   useEffect(() => {
     if (user) {
       navigate("/home");
@@ -29,22 +30,23 @@ const Login: React.FC = () => {
   return (
     <>
       <BackgroundImage
-      image=""
-      description=""
-      variant="default"
-      title=""
-    />
+        image=""
+        description=""
+        variant="default"
+        title=""
+      />
       <div className="container page-content">
         <div className="component-wrapper">
           <div className="login-card">
             <div className="login-card-content">
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
+                  {/* Updated this input field for username */}
                   <input
-                    type="email"
-                    placeholder="Sähköposti"
-                    value={formData.email}
-                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    type="text"
+                    placeholder="Käyttäjätunnus"
+                    value={formData.username}
+                    onChange={(e) => setFormData({ ...formData, username: e.target.value })}
                     className="input-field"
                   />
                 </div>
