@@ -4,6 +4,7 @@ import MembershipBenefits from "../components/MembershipBenefits";
 import TextBlock from "../components/TextBlock";
 import aboutBg from "../assets/meista_kuva1.jpg";
 import FadeInOnScroll from "../components/FadeInOnScroll";
+import membershipHomeImage from "../assets/jasenyys_kuva3.jpg";
 
 const About: React.FC = () => (
   <>
@@ -30,7 +31,7 @@ const About: React.FC = () => (
       </FadeInOnScroll>
       <FadeInOnScroll>
         <div className="component-wrapper spacing-medium">
-          <MembershipBenefits />
+          <MembershipBenefits imageSrc={membershipHomeImage} />
         </div>
       </FadeInOnScroll>
     </div>

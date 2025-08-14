@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
+const path = require("path"); // Added for handling file paths
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -10,6 +11,9 @@ const PORT = process.env.PORT || 5001;
 // === Middleware ===
 app.use(express.json());
 app.use(cookieParser());
+
+// === Serve Static Files for Image Uploads ===
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
 
 // === Dynamic CORS ===
 const allowedOrigins = (process.env.CORS_ORIGIN || "http://localhost:5173")
@@ -49,6 +53,7 @@ mongoose
 const { router: authRouter } = require("./routes/auth");
 const eventsRouter = require("./routes/events");
 const chantsRouter = require("./routes/chants");
+const galleryRouter = require("./routes/gallery"); // Added for the new gallery feature
 
 app.get("/", (req, res) => {
   res.send("🚀 Server is running!");
@@ -57,6 +62,7 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRouter);
 app.use("/api/events", eventsRouter);
 app.use("/api/chants", chantsRouter);
+app.use("/api/gallery", galleryRouter); // Added for the new gallery feature
 
 // === Error Handling ===
 app.use((req, res) => {

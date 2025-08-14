@@ -1,9 +1,12 @@
 // src/components/MembershipBenefits.tsx
 import React from "react";
 import { Link } from "react-router-dom";
-import membershipImage from "../assets/jasenyys_kuva1.jpg";
 
-const MembershipBenefits: React.FC = () => {
+interface MembershipBenefitsProps {
+  imageSrc: string;
+}
+
+const MembershipBenefits: React.FC<MembershipBenefitsProps> = ({ imageSrc }) => {
   const benefitsDescription =
     "Meidän Kerho ry:n jäsenenä tuet kannattajakulttuurin kasvua, pääset vaikuttamaan kannattajaryhmän toimintaan, sekä saat alennuksia matkoista, tuotteista ja tapahtumista. Lue lisää ja liity nyt!";
 
@@ -18,7 +21,7 @@ const MembershipBenefits: React.FC = () => {
           </Link>
         </div>
         <div className="membership-image">
-          <img src={membershipImage} alt="Membership Benefits" />
+          <img src={imageSrc} alt="Membership Benefits" />
         </div>
       </div>
     </div>
