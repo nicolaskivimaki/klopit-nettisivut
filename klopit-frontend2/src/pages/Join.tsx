@@ -12,45 +12,54 @@ const benefits = [
   "Seinäjoen Keilahalli - Salikäynneistä ja -korteista opiskelijahinnat",
 ];
 
+const MEMBERSHIP_FORM_URL = "https://forms.gle/CDQMDKeHpWLhPABp6";
+
 const Instructions: React.FC = () => {
   return (
     <div className="instructions">
       <div className="donations-content">
         <h2>Liittymisohje Meidän Kerho ry:n jäseneksi</h2>
         <p>
-          Jäseneksi voit liittyä lähettämällä tarvittavat tiedot sähköpostitse ja maksamalla jäsenmaksun. Toimi näin:
+          Jäseneksi voit liittyä täyttämällä jäsenlomakkeen ja maksamalla jäsenmaksun.
+          Toimi näin:
         </p>
+
         <div className="donation-card">
           <div className="step">
-            <h3 className="step-title">1. Lähetä sähköpostiviesti</h3>
+            <h3 className="step-title">1. Täytä jäsenlomake</h3>
             <ul>
               <li>
-                <strong>Osoite:</strong> posti@meidankerho.fi
+                <strong>Lomake:</strong>{" "}
+                <a
+                  href={MEMBERSHIP_FORM_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {MEMBERSHIP_FORM_URL}
+                </a>
               </li>
-              <li>
-                <strong>Aihe:</strong> "jäsentiedot"
-              </li>
-              <li>
-                <strong>Henkilötiedot:</strong>
-                <ul>
-                  <li>Etu- ja sukunimi</li>
-                  <li>Sähköpostiosoite</li>
-                  <li>Puhelinnumero</li>
-                </ul>
-              </li>
-              <p></p>
-              <li></li>
             </ul>
           </div>
+
           <div className="step">
             <h3 className="step-title">2. Maksa jäsenmaksu</h3>
             <ul>
               <li>
-                <strong>Uusi jäsen:</strong> 30€ (vuosittainen 20€ + liittymismaksu 10€)
+                <strong>Uusi jäsen:</strong>
+                <ul>
+                  <li>35€ (aikuinen)</li>
+                  <li>25€ (alaikäinen)</li>
+                </ul>
               </li>
+
               <li>
-                <strong>Vanha jäsen:</strong> 20€ (vuosittainen jäsenmaksu)
+                <strong>Vanha jäsen:</strong>
+                <ul>
+                  <li>25€ (aikuinen)</li>
+                  <li>15€ (alaikäinen)</li>
+                </ul>
               </li>
+
               <li>
                 <strong>Tilinumero:</strong> FI29 4108 0013 1821 60
               </li>
@@ -58,11 +67,10 @@ const Instructions: React.FC = () => {
                 <strong>Maksunsaaja:</strong> Meidän Kerho ry
               </li>
               <li>
-                <strong>Ei viitettä. Kirjoita viestikenttään:</strong>
-                <ul>
-                  <li>Uusi jäsen: "Liittyminen25"</li>
-                  <li>Vanha jäsen: "Jäsenmaksu25"</li>
-                </ul>
+                <strong>Ei viitettä.</strong>
+              </li>
+              <li>
+                <strong>Kirjoita viestikenttään:</strong> jäsenyys, jonka ostat
               </li>
             </ul>
           </div>
@@ -74,22 +82,18 @@ const Instructions: React.FC = () => {
 
 const Join: React.FC = () => (
   <>
-    <BackgroundImage
-      image={joinBg}
-      title="Jäsenyys"
-      description=""
-      variant="default"
-    />
+    <BackgroundImage image={joinBg} title="Jäsenyys" description="" variant="default" />
     <div className="container page-content">
       <FadeInOnScroll>
         <div className="component-wrapper">
           <TextBlock
             heading="Jäsenyyden edut"
-            content="Oikeus mahdollisten ytkeiden kanssa:"
+            content="Jäsenyydellä saat etuja yhteistyökumppaneilta:"
             list={benefits}
           />
         </div>
       </FadeInOnScroll>
+
       <FadeInOnScroll>
         <div className="component-wrapper">
           <Instructions />
