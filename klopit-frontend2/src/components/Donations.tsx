@@ -22,7 +22,7 @@ const Donations: React.FC = () => {
               <strong>Tili:</strong> FI29 4108 0013 1821 60
             </li>
             <li>
-              <strong>Viesti:</strong> Tukimaksu 2025
+              <strong>Viesti:</strong> Tukimaksu 2026
             </li>
             <li>Viitettä ei tarvitse.</li>
           </ul>
