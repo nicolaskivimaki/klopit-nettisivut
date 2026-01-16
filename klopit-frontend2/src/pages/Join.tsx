@@ -5,11 +5,11 @@ import TextBlock from "../components/TextBlock";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 
 const benefits = [
-  "OmaSP Stadion/SJK - Kaikista aikuisten juomista -25%",
-  "SJK-Juniorit/kannattajapäädyn kioski - Makkara 2€, kahvi 2,50€, vesi oston yhteydessä maksutta, muuten 1€.",
+  "OmaSP Stadion/SJK - SJK:n ottelutapahtumissa kaikista aikuisten juomista -25%",
   "Irish Pub Danny Boy - Hanajuomat -15%",
   "El Cebo - Annoksista -10% (ei koske lounasaikaa)",
-  "Seinäjoen Keilahalli - Salikäynneistä ja -korteista opiskelijahinnat",
+  "SJK-Juniorit/kannattajapäädyn kioski - Tulevan kauden edut selviää lähempänä kautta",
+  "www.pekripe.fi - Kaikista tuotteista -15%",
 ];
 
 const MEMBERSHIP_FORM_URL = "https://forms.gle/CDQMDKeHpWLhPABp6";
