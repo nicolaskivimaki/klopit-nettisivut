@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
             </svg>
           </a>
         </div>
-        <p className="footer-photo-credit">Kuvat: Mika Alavesa</p>
+        <p className="footer-photo-credit">Kuvat: Mika Alavesa, Väinö Parjanen sekä Meidän Kerho ry:n jäsenet (omat kuvat), ellei toisin mainita.</p>
       </div>
     </footer>
   );
