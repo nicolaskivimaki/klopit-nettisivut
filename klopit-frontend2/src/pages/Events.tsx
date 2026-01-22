@@ -6,6 +6,7 @@ import CalendarView from "../components/CalendarView";
 import { Link } from "react-router-dom";
 import config from "../config";
 import FadeInOnScroll from "../components/FadeInOnScroll";
+import eventBg from "../assets/tapahtumat_kuva.jpg";
 
 interface EventType {
   _id: string;
@@ -126,7 +127,13 @@ const Events: React.FC = () => {
 
   return (
     <>
-      <BackgroundImage image="" title="" description="" variant="default" />
+      <BackgroundImage
+        image={eventBg}
+        title="Tapahtumat"
+        variant="default"
+        focus="30% 55%"
+        focusMobile="30% 55%"
+      />
       <div className="container page-content">
         <FadeInOnScroll>
           <div className="component-wrapper">
