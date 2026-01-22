@@ -131,8 +131,8 @@ const Events: React.FC = () => {
         image={eventBg}
         title="Tapahtumat"
         variant="default"
-        focus="30% 55%"
-        focusMobile="30% 55%"
+        focus="30% 70%"
+        focusMobile="30% 70%"
       />
       <div className="container page-content">
         <FadeInOnScroll>

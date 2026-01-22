@@ -87,8 +87,8 @@ const Join: React.FC = () => (
       image={joinBg}
       title="Jäsenyys"
       variant="default"
-      focus="38% 50%"
-      focusMobile="38% 50%"
+      focus="55% 50%"
+      focusMobile="55% 50%"
 
     />
     <div className="container page-content">
