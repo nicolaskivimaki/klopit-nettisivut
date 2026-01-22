@@ -252,6 +252,7 @@ p {
 @media (max-width: 768px) {
   .background-image {
     background-attachment: scroll !important;
+    background-position: var(--bg-pos-mobile, var(--bg-pos, center));
   }
 }
 
@@ -443,7 +444,7 @@ ul {
   width: 100%;
   display: flex;
   background-size: cover;
-  background-position: center;
+  background-position: var(--bg-pos, center);
   background-attachment: fixed;
   overflow: hidden;
 }
@@ -462,7 +463,7 @@ ul {
   background-size: cover; /* Fill container, crop if needed */
   background-repeat: no-repeat;
   background-attachment: scroll;
-  background-position: center bottom; /* Prioritize bottom for title */
+  --bg-pos: center bottom; /* Prioritize bottom for title */
 }
 
 .background-image.no-background {

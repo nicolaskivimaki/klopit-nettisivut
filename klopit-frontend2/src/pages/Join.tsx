@@ -83,7 +83,14 @@ const Instructions: React.FC = () => {
 
 const Join: React.FC = () => (
   <>
-    <BackgroundImage image={joinBg} title="Jäsenyys" description="" variant="default" />
+    <BackgroundImage 
+      image={joinBg}
+      title="Jäsenyys"
+      variant="default"
+      focus="38% 50%"
+      focusMobile="38% 50%"
+
+    />
     <div className="container page-content">
       <FadeInOnScroll>
         <div className="component-wrapper">

@@ -11,8 +11,9 @@ const About: React.FC = () => (
     <BackgroundImage
       image={aboutBg}
       title="Meistä"
-      description=""
       variant="default"
+      focus="50% 55%"
+      focusMobile="50% 55%"
     />
     <div className="container page-content">
       <FadeInOnScroll>

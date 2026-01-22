@@ -31,8 +31,9 @@ const Home: React.FC = () => {
       <BackgroundImage
         image={homeBg}
         title="MEIDÄN KERHO"
-        description=""
         variant="frontPage"
+        focus="50% 50%"
+        focusMobile="50% 50%"
       />
       <div className="container page-content">
         <FadeInOnScroll>

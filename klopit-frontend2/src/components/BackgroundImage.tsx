@@ -7,7 +7,10 @@ interface BackgroundImageProps {
   description?: string;
   variant?: "frontPage" | "default";
   children?: React.ReactNode;
+  focus?: string;
+  focusMobile?: string;
 }
+
 
 const BackgroundImage: React.FC<BackgroundImageProps> = ({
   image,
@@ -15,16 +18,20 @@ const BackgroundImage: React.FC<BackgroundImageProps> = ({
   description,
   variant = "default",
   children,
+  focus,
+  focusMobile,
 }) => {
+  const style: React.CSSProperties & Record<string, string> = {};
+  if (image) style.backgroundImage = `url(${image})`;
+  if (focus) style["--bg-pos"] = focus;
+  if (focusMobile) style["--bg-pos-mobile"] = focusMobile;
+
   return (
     <div
       className={`background-image ${variant === "frontPage" ? "front-page" : "default-page"} ${!image ? "no-background" : ""}`}
-      style={image ? { backgroundImage: `url(${image})` } : {}}
+      style={image ? style : {}}
     >
-      {/* Dark overlay goes first (behind the content) */}
       {image && <div className="background-overlay"></div>}
-      
-      {/* Content container positioned above the overlay */}
       <div className="background-content-wrapper">
         <h1 className="background-title">{title}</h1>
         {description && (
