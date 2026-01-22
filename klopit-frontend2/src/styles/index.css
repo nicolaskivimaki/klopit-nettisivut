@@ -2366,4 +2366,10 @@ input:focus + .toggle-slider {
   color: white;
 }
 
-
+.breakable-link {
+  display: inline-block;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;   /* best modern behavior */
+  word-break: break-word;    /* fallback */
+}

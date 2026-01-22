@@ -31,6 +31,7 @@ const Instructions: React.FC = () => {
               <li>
                 <strong>Lomake:</strong>{" "}
                 <a
+                  className="breakable-link"
                   href={MEMBERSHIP_FORM_URL}
                   target="_blank"
                   rel="noopener noreferrer"
