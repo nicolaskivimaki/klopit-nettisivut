@@ -22,9 +22,12 @@ const EventPage: React.FC = () => {
 
   if (!event)
     return (
-      <div className="container page-content">
-        <p>Loading event...</p>
-      </div>
+      <>
+        <BackgroundImage image="" title="" description="" variant="default" />
+        <div className="container page-content">
+          <p>Loading event...</p>
+        </div>
+      </>
     );
 
   return (

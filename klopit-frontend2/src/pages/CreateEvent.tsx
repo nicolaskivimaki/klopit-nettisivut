@@ -29,7 +29,14 @@ const CreateEvent: React.FC = () => {
   const inputRef = useRef<HTMLInputElement>(null);
 
   if (!user?.isAdmin) {
-    return <p>Access denied. Admins only.</p>;
+    return (
+      <>
+        <BackgroundImage image="" title="" description="" variant="default" />
+        <div className="container page-content">
+          <p>Access denied. Admins only.</p>
+        </div>
+      </>
+    );
   }
 
   useEffect(() => {

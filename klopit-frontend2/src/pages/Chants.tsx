@@ -129,12 +129,15 @@ const Chants: React.FC = () => {
 
   if (error) {
     return (
-      <div className="container page-content">
-        <div className="component-wrapper">
-          <h2 className="upcoming-events-title">Chänttikirja</h2>
-          <p className="error-message">{error}</p>
+      <>
+        <BackgroundImage image="" title="" description="" variant="default" />
+        <div className="container page-content">
+          <div className="component-wrapper">
+            <h2 className="upcoming-events-title">Chänttikirja</h2>
+            <p className="error-message">{error}</p>
+          </div>
         </div>
-      </div>
+      </>
     );
   }
 
