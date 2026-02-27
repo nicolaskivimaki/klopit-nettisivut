@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import config from "../config";
 import FadeInOnScroll from "../components/FadeInOnScroll";
 import eventBg from "../assets/tapahtumat_kuva.jpg";
+import LinkifiedText from "../components/LinkifiedText";
 
 interface EventType {
   _id: string;
@@ -239,7 +240,7 @@ const Events: React.FC = () => {
                             </p>
                             <h3 className="event-card-title">{event.title}</h3>
                             <p className="event-card-description">
-                              {event.description}
+                              <LinkifiedText text={event.description ?? ""} />
                             </p>
                             <div className="admin-buttons">
                               <button

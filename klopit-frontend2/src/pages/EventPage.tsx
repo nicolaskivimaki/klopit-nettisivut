@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useParams, Link, useLocation } from "react-router-dom";
 import config from "../config";
 import BackgroundImage from "../components/BackgroundImage";
+import LinkifiedText from "../components/LinkifiedText";
 
 const EventPage: React.FC = () => {
   const { id } = useParams();
@@ -43,7 +44,9 @@ const EventPage: React.FC = () => {
                 ? new Date(event.date).toLocaleDateString("fi-FI")
                 : "Ei päivämäärää"}
             </h3>
-            <p className="event-description">{event.description}</p>
+            <p className="event-description">
+              <LinkifiedText text={event.description ?? ""} />
+            </p>
           </div>
       </div>
     </>
