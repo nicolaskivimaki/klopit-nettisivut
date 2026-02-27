@@ -32,7 +32,17 @@ const AlbumPage: React.FC = () => {
   const [imageIndex, setImageIndex] = useState(0);
 
   const { user } = useAuth();
-  const SERVER_URL = config.API_BASE_URL.replace("/api", "");
+  
+  const getImageUrl = (rawUrl: string): string => {
+    if (!rawUrl) return "";
+    if (rawUrl.startsWith("http://") || rawUrl.startsWith("https://")) {
+      return rawUrl;
+    }
+
+    const apiUrl = new URL(config.API_BASE_URL, window.location.origin);
+    const apiOrigin = apiUrl.origin;
+    return new URL(rawUrl, apiOrigin).toString();
+  };
 
   useEffect(() => {
     if (!id) return;
@@ -133,7 +143,7 @@ const AlbumPage: React.FC = () => {
                               </button>
                           )}
                           <img 
-                            src={`${SERVER_URL}${image.url}`} 
+                            src={getImageUrl(image.url)} 
                             alt={image.caption || album.title} 
                             onClick={() => {
                               setImageIndex(index);
@@ -154,7 +164,7 @@ const AlbumPage: React.FC = () => {
       <Lightbox
         open={lightboxOpen}
         close={() => setLightboxOpen(false)}
-        slides={images.map(image => ({ src: `${SERVER_URL}${image.url}` }))}
+        slides={images.map((image) => ({ src: getImageUrl(image.url) }))}
         index={imageIndex}
       />
     </>
